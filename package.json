@@ -1,0 +1,28 @@
+{
+  "name": "counting-check",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IlyaLisitsin/counting-check.git"
+  },
+  "author": "Ilya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IlyaLisitsin/counting-check/issues"
+  },
+  "homepage": "https://github.com/IlyaLisitsin/counting-check#readme",
+  "dependencies": {
+    "babel-loader": "^7.1.4",
+    "webpack": "^4.12.0",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "devDependencies": {
+    "webpack-cli": "^2.1.3"
+  }
+}
