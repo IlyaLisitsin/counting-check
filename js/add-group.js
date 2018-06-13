@@ -14,7 +14,8 @@
         }
 
         mainSection.innerHTML += initialGroupBlockGenerator(newGroupName)
-        newGroupInit(newGroupName)
+
+        newGroupInit()
         toggleAddSection()
     }
 

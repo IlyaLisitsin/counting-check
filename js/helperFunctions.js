@@ -27,16 +27,3 @@ const initialGroupBlockGenerator = (groupName) => `
             </div>
         </div>
 `
-
-const variablesInititalion = () => {
-    const addUnitButton = document.querySelectorAll('.add-unit-button')
-    const addCurrentPositionButton = document.querySelectorAll('.add-current-position-button')
-    const addSection = document.querySelector('.add-section')
-    const nameInput = document.querySelector('#name-input')
-    const amountInput = document.querySelector('#amount-input')
-    const colorInput = document.querySelector('#color-input')
-    const costPriceInput = document.querySelector('#cost-price-input')
-    const sellPriceInput = document.querySelector('#sell-price-input')
-    const sizeInput = document.querySelector('#size-input')
-    const resultTable = document.querySelector('.result-section-table')
-}

@@ -3,6 +3,7 @@ const newGroupConfirmButton = document.querySelector('#new-group-confirm-button'
 const newGroupNameInput = document.querySelector('#new-group-name-input')
 
 const addSectionInputs = document.querySelectorAll('.add-section input')
+const resultTable = document.querySelector('.result-section-table')
 // const mainPanel = document.querySelector('.main-panel')
 const mainSection = document.querySelector('.main-section')
 const addGroupInputBlock = document.querySelector('.add-group-input-block')

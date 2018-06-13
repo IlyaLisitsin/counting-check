@@ -1,25 +1,26 @@
-const newGroupInit = (groupName) => {
+const newGroupInit = () => {
 
-    const addUnitButton = document.querySelector(`#${groupName}-group .add-unit-button`)
-    const addCurrentPositionButton = document.querySelector(`#${groupName}-group .add-current-position-button`)
-    const addSection = document.querySelector(`#${groupName}-group .add-section`)
-    const nameInput = document.querySelector(`#${groupName}-group .name-input`)
-    const amountInput = document.querySelector(`#${groupName}-group .amount-input`)
-    const colorInput = document.querySelector(`#${groupName}-group .color-input`)
-    const costPriceInput = document.querySelector(`#${groupName}-group .cost-price-input`)
-    const sellPriceInput = document.querySelector(`#${groupName}-group .sell-price-input`)
-    const sizeInput = document.querySelector(`#${groupName}-group .size-input`)
-    const resultTable = document.querySelector(`#${groupName}-group .result-section-table`)
+    const addUnitButtonCollection = document.querySelectorAll('.add-unit-button')
+    const addCurrentPositionButtonCollection = document.querySelectorAll('.add-current-position-button')
+    const addSectionCollection = document.querySelectorAll(`.add-section`)
+    const resultTableCollection = document.querySelectorAll('.result-section-table')
 
-    const toggleAddUnitSection = () => {
-        addSection.classList.contains('hide') ? addUnitButton.innerHTML = addUnitButtonActiveText :
-            addUnitButton.innerHTML = addUnitButtonInitialText
-        addSection.classList.toggle('hide')
+    const nameInputCollection = document.querySelectorAll('.name-input')
+    const amountInputCollection = document.querySelectorAll('.amount-input')
+    const colorInputCollection = document.querySelectorAll('.color-input')
+    const costPriceInputCollection = document.querySelectorAll('.cost-price-input')
+    const sellPriceInputCollection = document.querySelectorAll('.sell-price-input')
+    const sizeInputCollection = document.querySelectorAll('.size-input')
+
+    const toggleAddUnitSection = (index) => {
+        Array.from(addSectionCollection)[index].classList.contains('hide') ? Array.from(addUnitButtonCollection)[index].innerHTML = addUnitButtonActiveText :
+                                                                             Array.from(addUnitButtonCollection)[index].innerHTML = addUnitButtonInitialText
+        Array.from(addSectionCollection)[index].classList.toggle('hide')
     }
 
     const clearInputs = () => Array.from(addSectionInputs).forEach(el => el.value = '')
 
-    const generateResultPosition = (obj) => {
+    const generateResultPosition = (obj, index) => {
         let {
             name,
             amount,
@@ -30,18 +31,18 @@ const newGroupInit = (groupName) => {
         } = obj
 
         while (amount) {
-            resultTable.innerHTML += `<tr><td>${name}</td><td>${color}</td><td>${size}</td><td>${costPrice}</td><td class="given"><input type="checkbox"></td><td class="sold"><input type="checkbox"></td><tr/>`
+            Array.from(resultTableCollection)[index].innerHTML += `<tr><td>${name}</td><td>${color}</td><td>${size}</td><td>${costPrice}</td><td class="given"><input type="checkbox"></td><td class="sold"><input type="checkbox"></td><tr/>`
             amount--
         }
     }
 
-    const addCurrentPosition = () => {
-        let name = nameInput.value
-        let amount = amountInput.value
-        let color = colorInput.value
-        let size = sizeInput.value
-        let costPrice = costPriceInput.value
-        let sellPrice = sellPriceInput.value
+    const addCurrentPosition = (index) => {
+        let name = Array.from(nameInputCollection)[index].value
+        let amount = Array.from(amountInputCollection)[index].value
+        let color = Array.from(colorInputCollection)[index].value
+        let size = Array.from(sizeInputCollection)[index].value
+        let costPrice = Array.from(costPriceInputCollection)[index].value
+        let sellPrice = Array.from(sellPriceInputCollection)[index].value
 
         if (!Number.isInteger(Number(amount))) {
             alert('Please choose correct amount')
@@ -55,11 +56,11 @@ const newGroupInit = (groupName) => {
             size,
             costPrice,
             sellPrice,
-        })
+        }, index)
 
         clearInputs()
     }
 
-    addUnitButton.addEventListener('click', toggleAddUnitSection)
-    addCurrentPositionButton.addEventListener('click', addCurrentPosition)
+    Array.from(addUnitButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(index)))
+    Array.from(addCurrentPositionButtonCollection).map((el, index) => el.addEventListener('click', () => addCurrentPosition(index)))
 }
