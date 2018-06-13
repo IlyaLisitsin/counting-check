@@ -9,8 +9,8 @@ const mainSection = document.querySelector('.main-section')
 const addGroupInputBlock = document.querySelector('.add-group-input-block')
 
 
-const addUnitButtonActiveText = 'Hide add section'
-const addUnitButtonInitialText = 'Add good'
+const unitButtonActiveText = 'Hide add section'
+const unitButtonInitialText = 'Add good'
 
 const initialResultTable = `
     <tr class="table-head">
@@ -23,4 +23,15 @@ const initialResultTable = `
     </tr>
 `
 
-
+export default {
+    addGroupButton,
+    newGroupConfirmButton,
+    newGroupNameInput,
+    addSectionInputs,
+    resultTable,
+    mainSection,
+    addGroupInputBlock,
+    unitButtonActiveText,
+    unitButtonInitialText,
+    initialResultTable,
+}

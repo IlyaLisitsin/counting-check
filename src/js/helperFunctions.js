@@ -40,3 +40,8 @@ const resultTableGenerator = (name, color, size, costPrice) => `
         <td class="sold"><input type="checkbox"></td>
     <tr/>
 `
+
+export default {
+    initialGroupBlockGenerator,
+    resultTableGenerator
+}

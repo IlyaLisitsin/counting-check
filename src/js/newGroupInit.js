@@ -1,3 +1,16 @@
+import helperFunctions from './helperFunctions'
+import variables from './variables'
+
+const {
+    unitButtonActiveText,
+    unitButtonInitialText,
+    addSectionInputs,
+} = variables
+
+const {
+    resultTableGenerator
+} = helperFunctions
+
 const newGroupInit = () => {
 
     const addUnitButtonCollection = document.querySelectorAll('.add-unit-button')
@@ -13,8 +26,8 @@ const newGroupInit = () => {
     const sizeInputCollection = document.querySelectorAll('.size-input')
 
     const toggleAddUnitSection = (index) => {
-        Array.from(addSectionCollection)[index].classList.contains('hide') ? Array.from(addUnitButtonCollection)[index].innerHTML = addUnitButtonActiveText :
-                                                                             Array.from(addUnitButtonCollection)[index].innerHTML = addUnitButtonInitialText
+        Array.from(addSectionCollection)[index].classList.contains('hide') ? Array.from(addUnitButtonCollection)[index].innerHTML = unitButtonActiveText :
+                                                                             Array.from(addUnitButtonCollection)[index].innerHTML = unitButtonInitialText
         Array.from(addSectionCollection)[index].classList.toggle('hide')
     }
 
@@ -64,3 +77,5 @@ const newGroupInit = () => {
     Array.from(addUnitButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(index)))
     Array.from(addCurrentPositionButtonCollection).map((el, index) => el.addEventListener('click', () => addCurrentPosition(index)))
 }
+
+export default newGroupInit
