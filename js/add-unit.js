@@ -1,22 +1,19 @@
-(function() {
-    const addButton = document.querySelector('#add-button')
-    const addCurrentPositionButton = document.querySelector('#add-current-position-button')
-    const nameInput = document.querySelector('#name-input')
-    const amountInput = document.querySelector('#amount-input')
-    const colorInput = document.querySelector('#color-input')
-    const costPriceInput = document.querySelector('#cost-price-input')
-    const sellPriceInput = document.querySelector('#sell-price-input')
-    const sizeInput = document.querySelector('#size-input')
-    const addSection = document.querySelector('.add-section')
-    const addSectionInputs = document.querySelectorAll('.add-section input')
-    const resultTable = document.querySelector('.result-section-table')
+const newGroupInit = (groupName) => {
 
-    const addButtonActiveText = 'Hide add section'
-    const addButtonInitialText = 'Add good'
+    const addUnitButton = document.querySelector(`#${groupName}-group .add-unit-button`)
+    const addCurrentPositionButton = document.querySelector(`#${groupName}-group .add-current-position-button`)
+    const addSection = document.querySelector(`#${groupName}-group .add-section`)
+    const nameInput = document.querySelector(`#${groupName}-group .name-input`)
+    const amountInput = document.querySelector(`#${groupName}-group .amount-input`)
+    const colorInput = document.querySelector(`#${groupName}-group .color-input`)
+    const costPriceInput = document.querySelector(`#${groupName}-group .cost-price-input`)
+    const sellPriceInput = document.querySelector(`#${groupName}-group .sell-price-input`)
+    const sizeInput = document.querySelector(`#${groupName}-group .size-input`)
+    const resultTable = document.querySelector(`#${groupName}-group .result-section-table`)
 
-    const toggleAddSection = () => {
-        addSection.classList.contains('hide') ? addButton.innerHTML = addButtonActiveText :
-                                                addButton.innerHTML = addButtonInitialText
+    const toggleAddUnitSection = () => {
+        addSection.classList.contains('hide') ? addUnitButton.innerHTML = addUnitButtonActiveText :
+            addUnitButton.innerHTML = addUnitButtonInitialText
         addSection.classList.toggle('hide')
     }
 
@@ -63,9 +60,6 @@
         clearInputs()
     }
 
-    addButton.addEventListener('click', toggleAddSection)
+    addUnitButton.addEventListener('click', toggleAddUnitSection)
     addCurrentPositionButton.addEventListener('click', addCurrentPosition)
-})()
-
-
-
+}
