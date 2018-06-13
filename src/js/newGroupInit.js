@@ -24,6 +24,7 @@ const newGroupInit = () => {
     const costPriceInputCollection = document.querySelectorAll('.cost-price-input')
     const sellPriceInputCollection = document.querySelectorAll('.sell-price-input')
     const sizeInputCollection = document.querySelectorAll('.size-input')
+    const groupHeadingCollection = document.querySelectorAll('.group-heading')
 
     const toggleAddUnitSection = (index) => {
         Array.from(addSectionCollection)[index].classList.contains('hide') ? Array.from(addUnitButtonCollection)[index].innerHTML = unitButtonActiveText :
@@ -76,6 +77,7 @@ const newGroupInit = () => {
 
     Array.from(addUnitButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(index)))
     Array.from(addCurrentPositionButtonCollection).map((el, index) => el.addEventListener('click', () => addCurrentPosition(index)))
+    Array.from(groupHeadingCollection).map(el => el.addEventListener('click', () => el.classList.toggle('active')))
 }
 
 export default newGroupInit

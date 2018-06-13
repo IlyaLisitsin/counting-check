@@ -1,6 +1,6 @@
 const initialGroupBlockGenerator = (groupName) => `
     <div class="group" id="${groupName}-group">
-        <h2>${groupName}</h2>
+        <h2 class="group-heading active">${groupName}</h2>
         <div class="group-content">
             <button class="add-unit-button">Add unit</button>
             <div class="add-section hide">
