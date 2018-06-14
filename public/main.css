@@ -24,14 +24,14 @@ h1 {
     overflow: hidden;
 }
 
-.group-heading + .group-content {
+.group-heading ~ .group-content {
     transform: scaleY(0);
     max-height: 0;
     transform-origin: top;
     transition: .5s ease-in;
 }
 
-.group-heading.active + .group-content {
+.group-heading.active ~ .group-content {
     transform: scaleY(1);
     transform-origin: top;
     max-height: 10000px;

@@ -1,3 +1,3 @@
-import addGroupListenersInit from './add-group'
+import addGroupListenersInit from './event-listeners/addGroup'
 
 addGroupListenersInit()

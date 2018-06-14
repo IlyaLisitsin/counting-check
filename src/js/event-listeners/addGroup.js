@@ -1,10 +1,6 @@
-import newGroupInit from './newGroupInit'
-import variables from './variables'
-import helperFunctions from './helperFunctions'
-
-const {
-    initialGroupBlockGenerator,
-} = helperFunctions
+import newGroupInit from '../newGroupInit'
+import initialGroupBlockGenerator from '../dom-generetor-functions/initialGroupBlockGenerator'
+import variables from '../variables'
 
 const {
     addGroupInputBlock,

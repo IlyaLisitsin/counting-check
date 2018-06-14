@@ -1,6 +1,7 @@
 const initialGroupBlockGenerator = (groupName) => `
     <div class="group" id="${groupName}-group">
         <h2 class="group-heading active">${groupName}</h2>
+        <button class="group-delete-button">Delete current group</button>
         <div class="group-content">
             <button class="add-unit-button">Add unit</button>
             <div class="add-section hide">
@@ -30,18 +31,4 @@ const initialGroupBlockGenerator = (groupName) => `
     </div>
 `
 
-const resultTableGenerator = (name, color, size, costPrice) => `
-    <tr>
-        <td>${name}</td>
-        <td>${color}</td>
-        <td>${size}</td>
-        <td>${costPrice}</td>
-        <td class="given"><input type="checkbox"></td>
-        <td class="sold"><input type="checkbox"></td>
-    <tr/>
-`
-
-export default {
-    initialGroupBlockGenerator,
-    resultTableGenerator
-}
+export default initialGroupBlockGenerator

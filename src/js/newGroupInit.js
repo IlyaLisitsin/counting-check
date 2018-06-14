@@ -1,4 +1,5 @@
-import helperFunctions from './helperFunctions'
+import deleteCurrentGroup from './event-listeners/deleteCurrentGroup'
+import addCurrentPosition from './event-listeners/addCurrentPosition'
 import variables from './variables'
 
 const {
@@ -7,9 +8,6 @@ const {
     addSectionInputs,
 } = variables
 
-const {
-    resultTableGenerator
-} = helperFunctions
 
 const newGroupInit = () => {
 
@@ -17,6 +15,7 @@ const newGroupInit = () => {
     const addCurrentPositionButtonCollection = document.querySelectorAll('.add-current-position-button')
     const addSectionCollection = document.querySelectorAll(`.add-section`)
     const resultTableCollection = document.querySelectorAll('.result-section-table')
+    const groupDeleteButtonCollection = document.querySelectorAll('.group-delete-button')
 
     const nameInputCollection = document.querySelectorAll('.name-input')
     const amountInputCollection = document.querySelectorAll('.amount-input')
@@ -25,6 +24,7 @@ const newGroupInit = () => {
     const sellPriceInputCollection = document.querySelectorAll('.sell-price-input')
     const sizeInputCollection = document.querySelectorAll('.size-input')
     const groupHeadingCollection = document.querySelectorAll('.group-heading')
+    const groupCollection = document.querySelectorAll('.group')
 
     const toggleAddUnitSection = (index) => {
         Array.from(addSectionCollection)[index].classList.contains('hide') ? Array.from(addUnitButtonCollection)[index].innerHTML = unitButtonActiveText :
@@ -32,52 +32,23 @@ const newGroupInit = () => {
         Array.from(addSectionCollection)[index].classList.toggle('hide')
     }
 
-    const clearInputs = () => Array.from(addSectionInputs).forEach(el => el.value = '')
-
-    const generateResultPosition = (obj, index) => {
-        let {
-            name,
-            amount,
-            color,
-            size,
-            costPrice,
-            // sellPrice,
-        } = obj
-
-        while (amount) {
-            Array.from(resultTableCollection)[index].innerHTML += resultTableGenerator(name, size, color, costPrice)
-            amount--
-        }
-    }
-
-    const addCurrentPosition = (index) => {
-        let name = Array.from(nameInputCollection)[index].value
-        let amount = Array.from(amountInputCollection)[index].value
-        let color = Array.from(colorInputCollection)[index].value
-        let size = Array.from(sizeInputCollection)[index].value
-        let costPrice = Array.from(costPriceInputCollection)[index].value
-        let sellPrice = Array.from(sellPriceInputCollection)[index].value
-
-        if (!Number.isInteger(Number(amount))) {
-            alert('Please choose correct amount')
-            return
-        }
-
-        generateResultPosition({
-            name,
-            amount,
-            color,
-            size,
-            costPrice,
-            sellPrice,
-        }, index)
-
-        clearInputs()
-    }
+    Array.from(addCurrentPositionButtonCollection).map((el, index) => el.addEventListener('click', () => addCurrentPosition(
+        {
+            name: Array.from(nameInputCollection)[index].value,
+            amount: Array.from(amountInputCollection)[index].value,
+            color: Array.from(colorInputCollection)[index].value,
+            size: Array.from(sizeInputCollection)[index].value,
+            costPrice: Array.from(costPriceInputCollection)[index].value,
+            sellPrice: Array.from(sellPriceInputCollection)[index].value,
+        },
+        index,
+        resultTableCollection,
+        addSectionInputs
+    )))
 
     Array.from(addUnitButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(index)))
-    Array.from(addCurrentPositionButtonCollection).map((el, index) => el.addEventListener('click', () => addCurrentPosition(index)))
     Array.from(groupHeadingCollection).map(el => el.addEventListener('click', () => el.classList.toggle('active')))
+    Array.from(groupDeleteButtonCollection).map((el, index) => el.addEventListener('click', () => deleteCurrentGroup(groupCollection[index])))
 }
 
 export default newGroupInit
