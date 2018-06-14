@@ -37,7 +37,7 @@ const newGroupInit = () => {
             name: Array.from(nameInputCollection)[index].value,
             amount: Array.from(amountInputCollection)[index].value,
             color: Array.from(colorInputCollection)[index].value,
-            size: Array.from(sizeInputCollection)[index].value,
+            size: Array.from(sizeInputCollection)[index].options[Array.from(sizeInputCollection)[index].selectedIndex].value,
             costPrice: Array.from(costPriceInputCollection)[index].value,
             sellPrice: Array.from(sellPriceInputCollection)[index].value,
         },

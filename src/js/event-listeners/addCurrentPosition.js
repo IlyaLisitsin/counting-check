@@ -18,7 +18,7 @@ const addCurrentPosition = (inputValueObject, index, resultTableCollection, addS
     }
 
     while (amount) {
-        Array.from(resultTableCollection)[index].innerHTML += resultTableGenerator(name, size, color, costPrice)
+        Array.from(resultTableCollection)[index].innerHTML += resultTableGenerator(name, color, size, costPrice)
         amount--
     }
 

@@ -8,7 +8,12 @@ const initialGroupBlockGenerator = (groupName) => `
                 <input type="text" placeholder="Name" class="name-input">
                 <input type="text" placeholder="Amount" class="amount-input">
                 <input type="text" placeholder="Color" class="color-input">
-                <input type="text" placeholder="Size" class="size-input">
+                <select class="size-input">
+                    <option value="s">s</option>
+                    <option value="m">m</option>
+                    <option value="l">l</option>
+                    <option value="xl">xl</option>
+                </select>
                 <input type="text" placeholder="Cost price" class="cost-price-input">
                 <input type="text" placeholder="Sell price" class="sell-price-input">
 
