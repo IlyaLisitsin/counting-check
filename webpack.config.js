@@ -28,5 +28,10 @@ module.exports = {
     ],
     devServer: {
         contentBase: './public'
+    },
+    resolve: {
+        alias: {
+            'variables': __dirname + '/src/js/variables'
+        }
     }
 }
