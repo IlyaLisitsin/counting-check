@@ -1,14 +1,15 @@
-const resultTableGenerator = (name, color, size, costPrice) => `
+const resultTableGenerator = (name, color, size, costPrice, sellPrice, dataFor) => `
     <tr>
-        <td>${name}</td>
-        <td>${color}</td>
-        <td>${size}</td>
-        <td>${costPrice}</td>
-        <td class="given"><input type="checkbox"></td>
-        <td class="sold"><input type="checkbox"></td>
-        <td class="edit-cell"><button class="edit-button">Edit line</button></td>
+        <td class="name-cell">${name}</td>
+        <td class="color-cell">${color}</td>
+        <td class="size-cell">${size}</td>
+        <td class="cost-price-cell">${costPrice}</td>
+        <td class="sell-price-cell">${sellPrice}</td>
+        <td class="given-cell"><input type="checkbox"></td>
+        <td class="sold-cell"><input type="checkbox"></td>
+        <td class="edit-cell"><button class="edit-line-button" data-for=${dataFor}>Edit line</button></td>
 
-    <tr/>
+    </tr>
 `
 
 export default resultTableGenerator

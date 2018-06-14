@@ -5,19 +5,23 @@ import toggleAddUnitSection from 'event-listeners/toggleAddUnitSection'
 
 const {
     addSectionInputs,
+    unitButtonActiveText,
+    unitButtonInitialText,
+    editButtonActiveText,
+    editButtonInitialText,
 } = variables
-
 
 const newGroupInit = () => {
 
-    const addUnitButtonCollection = document.querySelectorAll('.add-unit-button')
+    const groupMainButtonCollection = document.querySelectorAll('.group-main-button')
     const addCurrentPositionButtonCollection = document.querySelectorAll('.add-current-position-button')
-    const addSectionCollection = document.querySelectorAll(`.add-section`)
-    const resultTableCollection = document.querySelectorAll('.result-section-table')
+    const groupMainSectionCollection = document.querySelectorAll(`.group-main-section`)
+    const groupEditSectionCollection = document.querySelectorAll(`.group-edit-section`)
+    const resultTableCollection = document.querySelectorAll('.result-section-table tbody')
     const groupDeleteButtonCollection = document.querySelectorAll('.group-delete-button')
+    const groupEditButtonCollection = document.querySelectorAll('.group-edit-button')
     const groupHeadingCollection = document.querySelectorAll('.group-heading')
     const groupCollection = document.querySelectorAll('.group')
-    const editButtonCollection = document.querySelectorAll('.editButton')
 
     const nameInputCollection = document.querySelectorAll('.name-input')
     const amountInputCollection = document.querySelectorAll('.amount-input')
@@ -25,8 +29,6 @@ const newGroupInit = () => {
     const costPriceInputCollection = document.querySelectorAll('.cost-price-input')
     const sellPriceInputCollection = document.querySelectorAll('.sell-price-input')
     const sizeInputCollection = document.querySelectorAll('.size-input')
-
-
 
     Array.from(addCurrentPositionButtonCollection).map((el, index) => el.addEventListener('click', () => addCurrentPosition(
         {
@@ -36,18 +38,27 @@ const newGroupInit = () => {
             size: Array.from(sizeInputCollection)[index].options[Array.from(sizeInputCollection)[index].selectedIndex].value,
             costPrice: Array.from(costPriceInputCollection)[index].value,
             sellPrice: Array.from(sellPriceInputCollection)[index].value,
+            dataFor: Array.from(resultTableCollection)[index].getAttribute('source-data'),
         },
         index,
         resultTableCollection,
         addSectionInputs
     )))
 
-    Array.from(addUnitButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(
-        index,
-        addSectionCollection,
-        addUnitButtonCollection
+    Array.from(groupMainButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(
+        Array.from(groupMainSectionCollection)[index],
+        Array.from(groupMainButtonCollection)[index],
+        unitButtonActiveText,
+        unitButtonInitialText
     )))
-    Array.from(editButtonCollection).map((el, index) => el.addEventListener('click', () => editCurrentLine(index)))
+
+    Array.from(groupEditButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(
+        Array.from(groupEditSectionCollection)[index],
+        Array.from(groupEditButtonCollection)[index],
+        editButtonActiveText,
+        editButtonInitialText
+    )))
+
     Array.from(groupDeleteButtonCollection).map((el, index) => el.addEventListener('click', () => deleteCurrentGroup(groupCollection[index])))
     Array.from(groupHeadingCollection).map(el => el.addEventListener('click', () => el.classList.toggle('active')))
 }

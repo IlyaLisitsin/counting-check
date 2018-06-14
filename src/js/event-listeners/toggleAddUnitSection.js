@@ -1,15 +1,13 @@
-import variables from 'variables'
-
-const {
-    unitButtonActiveText,
-    unitButtonInitialText,
-} = variables
-
-const toggleAddUnitSection = (index, addSectionCollection, addUnitButtonCollection) => {
-    Array.from(addSectionCollection)[index].classList.contains('hide') ?
-        Array.from(addUnitButtonCollection)[index].innerHTML = unitButtonActiveText :
-        Array.from(addUnitButtonCollection)[index].innerHTML = unitButtonInitialText
-    Array.from(addSectionCollection)[index].classList.toggle('hide')
+const toggleAddUnitSection = (
+    groupMainSection,
+    groupMainButton,
+    activeText,
+    initialText,
+) => {
+    groupMainSection.classList.contains('hide') ?
+        groupMainButton.innerHTML = activeText :
+        groupMainButton.innerHTML = initialText
+    groupMainSection.classList.toggle('hide')
 }
 
 export default toggleAddUnitSection

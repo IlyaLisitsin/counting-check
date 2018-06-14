@@ -1,7 +1,7 @@
 import resultTableGenerator from 'dom-generators/resultTableGenerator'
+import newGoodInit from 'js/newGoodInit'
 
 const clearInputs = (addSectionInputs) => Array.from(addSectionInputs).forEach(el => el.value = '')
-const inputValidator = (amount, costPrice, sellPrice) => {}
 
 const addCurrentPosition = (inputValueObject, index, resultTableCollection, addSectionInputs) => {
     let {
@@ -11,6 +11,7 @@ const addCurrentPosition = (inputValueObject, index, resultTableCollection, addS
         size,
         costPrice,
         sellPrice,
+        dataFor,
     } = inputValueObject
 
     if (!Number.isInteger(Number(amount))) {
@@ -25,11 +26,12 @@ const addCurrentPosition = (inputValueObject, index, resultTableCollection, addS
     }
 
     while (amount) {
-        Array.from(resultTableCollection)[index].innerHTML += resultTableGenerator(name, color, size, costPrice)
+        Array.from(resultTableCollection)[index].innerHTML += resultTableGenerator(name, color, size, costPrice, sellPrice, dataFor)
         amount--
     }
 
     clearInputs(addSectionInputs)
+    newGoodInit(dataFor)
 }
 
 export default addCurrentPosition

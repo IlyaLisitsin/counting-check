@@ -2,7 +2,7 @@ const addGroupButton = document.querySelector('#add-group-button')
 const newGroupConfirmButton = document.querySelector('#new-group-confirm-button')
 const newGroupNameInput = document.querySelector('#new-group-name-input')
 
-const addSectionInputs = document.querySelectorAll('.add-section input')
+const addSectionInputs = document.querySelectorAll('.group-main-section input')
 const resultTable = document.querySelector('.result-section-table')
 // const mainPanel = document.querySelector('.main-panel')
 const mainSection = document.querySelector('.main-section')
@@ -11,6 +11,9 @@ const addGroupInputBlock = document.querySelector('.add-group-input-block')
 
 const unitButtonActiveText = 'Hide add section'
 const unitButtonInitialText = 'Add good'
+
+const editButtonActiveText = 'Hide edit section'
+const editButtonInitialText = 'Edit good'
 
 const initialResultTable = `
     <tr class="table-head">
@@ -33,5 +36,7 @@ export default {
     addGroupInputBlock,
     unitButtonActiveText,
     unitButtonInitialText,
+    editButtonActiveText,
+    editButtonInitialText,
     initialResultTable,
 }
