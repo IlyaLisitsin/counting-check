@@ -1,6 +1,7 @@
 import resultTableGenerator from '../dom-generetor-functions/resultTableGenerator'
 
 const clearInputs = (addSectionInputs) => Array.from(addSectionInputs).forEach(el => el.value = '')
+const inputValidator = (amount, costPrice, sellPrice) => {}
 
 const addCurrentPosition = (inputValueObject, index, resultTableCollection, addSectionInputs) => {
     let {
@@ -9,11 +10,17 @@ const addCurrentPosition = (inputValueObject, index, resultTableCollection, addS
         color,
         size,
         costPrice,
-        // sellPrice,
+        sellPrice,
     } = inputValueObject
 
     if (!Number.isInteger(Number(amount))) {
         alert('Please choose correct amount')
+        return
+    } else if (!Number.isInteger(Number(costPrice))) {
+        alert('Please choose correct cost price')
+        return
+    } else if (!Number.isInteger(Number(sellPrice))) {
+        alert('Please choose correct sell price')
         return
     }
 

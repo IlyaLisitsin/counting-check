@@ -1,10 +1,9 @@
+import variables from 'variables'
 import deleteCurrentGroup from './event-listeners/deleteCurrentGroup'
 import addCurrentPosition from './event-listeners/addCurrentPosition'
-import variables from './variables'
+import toggleAddUnitSection from './event-listeners/toggleAddUnitSection'
 
 const {
-    unitButtonActiveText,
-    unitButtonInitialText,
     addSectionInputs,
 } = variables
 
@@ -16,6 +15,9 @@ const newGroupInit = () => {
     const addSectionCollection = document.querySelectorAll(`.add-section`)
     const resultTableCollection = document.querySelectorAll('.result-section-table')
     const groupDeleteButtonCollection = document.querySelectorAll('.group-delete-button')
+    const groupHeadingCollection = document.querySelectorAll('.group-heading')
+    const groupCollection = document.querySelectorAll('.group')
+    const editButtonCollection = document.querySelectorAll('.editButton')
 
     const nameInputCollection = document.querySelectorAll('.name-input')
     const amountInputCollection = document.querySelectorAll('.amount-input')
@@ -23,14 +25,8 @@ const newGroupInit = () => {
     const costPriceInputCollection = document.querySelectorAll('.cost-price-input')
     const sellPriceInputCollection = document.querySelectorAll('.sell-price-input')
     const sizeInputCollection = document.querySelectorAll('.size-input')
-    const groupHeadingCollection = document.querySelectorAll('.group-heading')
-    const groupCollection = document.querySelectorAll('.group')
 
-    const toggleAddUnitSection = (index) => {
-        Array.from(addSectionCollection)[index].classList.contains('hide') ? Array.from(addUnitButtonCollection)[index].innerHTML = unitButtonActiveText :
-                                                                             Array.from(addUnitButtonCollection)[index].innerHTML = unitButtonInitialText
-        Array.from(addSectionCollection)[index].classList.toggle('hide')
-    }
+
 
     Array.from(addCurrentPositionButtonCollection).map((el, index) => el.addEventListener('click', () => addCurrentPosition(
         {
@@ -46,9 +42,14 @@ const newGroupInit = () => {
         addSectionInputs
     )))
 
-    Array.from(addUnitButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(index)))
-    Array.from(groupHeadingCollection).map(el => el.addEventListener('click', () => el.classList.toggle('active')))
+    Array.from(addUnitButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(
+        index,
+        addSectionCollection,
+        addUnitButtonCollection
+    )))
+    Array.from(editButtonCollection).map((el, index) => el.addEventListener('click', () => editCurrentLine(index)))
     Array.from(groupDeleteButtonCollection).map((el, index) => el.addEventListener('click', () => deleteCurrentGroup(groupCollection[index])))
+    Array.from(groupHeadingCollection).map(el => el.addEventListener('click', () => el.classList.toggle('active')))
 }
 
 export default newGroupInit
