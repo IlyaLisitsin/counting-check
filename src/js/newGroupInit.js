@@ -1,7 +1,7 @@
 import variables from 'variables'
-import deleteCurrentGroup from './event-listeners/deleteCurrentGroup'
-import addCurrentPosition from './event-listeners/addCurrentPosition'
-import toggleAddUnitSection from './event-listeners/toggleAddUnitSection'
+import deleteCurrentGroup from 'event-listeners/deleteCurrentGroup'
+import addCurrentPosition from 'event-listeners/addCurrentPosition'
+import toggleAddUnitSection from 'event-listeners/toggleAddUnitSection'
 
 const {
     addSectionInputs,

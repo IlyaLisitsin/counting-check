@@ -31,7 +31,9 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'variables': __dirname + '/src/js/variables'
+            'variables': __dirname + '/src/js/variables',
+            'event-listeners': __dirname + '/src/js/event-listeners',
+            'dom-generators': __dirname + '/src/js/dom-generators'
         }
     }
 }

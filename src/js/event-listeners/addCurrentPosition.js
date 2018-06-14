@@ -1,4 +1,4 @@
-import resultTableGenerator from '../dom-generetor-functions/resultTableGenerator'
+import resultTableGenerator from 'dom-generators/resultTableGenerator'
 
 const clearInputs = (addSectionInputs) => Array.from(addSectionInputs).forEach(el => el.value = '')
 const inputValidator = (amount, costPrice, sellPrice) => {}

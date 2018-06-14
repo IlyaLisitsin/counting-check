@@ -1,5 +1,5 @@
 import newGroupInit from '../newGroupInit'
-import initialGroupBlockGenerator from '../dom-generetor-functions/initialGroupBlockGenerator'
+import initialGroupBlockGenerator from 'dom-generators/initialGroupBlockGenerator'
 import variables from 'variables'
 
 const {
