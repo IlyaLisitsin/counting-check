@@ -60,3 +60,19 @@ h1 {
 .group-edit-section {
     border: 1px solid red;
 }
+
+.group-edit-panel {
+    display: none;
+}
+
+.group-add-panel.hide ~ .group-edit-panel  {
+    display: block;
+}
+
+.editting-tbody tr:not(.editting-line) {
+    background: grey;
+}
+
+button[disabled="true"] {
+    cursor: not-allowed;
+}

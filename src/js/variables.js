@@ -8,12 +8,16 @@ const resultTable = document.querySelector('.result-section-table')
 const mainSection = document.querySelector('.main-section')
 const addGroupInputBlock = document.querySelector('.add-group-input-block')
 
+// const activeEditButton = document.querySelector('.active-edit-button')
 
 const unitButtonActiveText = 'Hide add section'
 const unitButtonInitialText = 'Add good'
 
 const editButtonActiveText = 'Hide edit section'
 const editButtonInitialText = 'Edit good'
+
+const exitEditModeText = 'Exit line editor'
+const startEditModeText = 'Edit litne'
 
 const initialResultTable = `
     <tr class="table-head">
@@ -39,4 +43,6 @@ export default {
     editButtonActiveText,
     editButtonInitialText,
     initialResultTable,
+    exitEditModeText,
+    startEditModeText,
 }
