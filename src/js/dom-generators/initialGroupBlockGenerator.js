@@ -35,7 +35,7 @@ const initialGroupBlockGenerator = (groupName) => `
                     <div class="group-edit-section">
                         <input type="text" placeholder="Name" class="edit-name-input">
                         <input type="text" placeholder="Color" class="edit-color-input">
-                        <select class="size-input">
+                        <select class="edit-size-input">
                             <option value="s">s</option>
                             <option value="m">m</option>
                             <option value="l">l</option>

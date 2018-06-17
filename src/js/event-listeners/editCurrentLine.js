@@ -11,7 +11,13 @@ const {
 const editCurrentLine = (index, event) => {
 
     const id = event.target.getAttribute('data-for')
+    const editButton = document.querySelector(`#${id} .group-edit-button`)
+    const mainButton = document.querySelector(`#${id} .group-main-button`)
+    const mainSection = document.querySelector(`#${id} .group-main-section`)
+    const editSection = document.querySelector(`#${id} .group-edit-section`)
+
     const editLineButtonCollection = document.querySelectorAll(`#${id} .edit-line-button`)
+
     const currentEditButton = event.target
     const currentTr = event.target.parentNode.parentNode
     const currentTbody = document.querySelector(`[source-data="${id}"]`)
@@ -24,6 +30,7 @@ const editCurrentLine = (index, event) => {
     currentTr.classList.toggle('editting-line')
 
     Array.from(editLineButtonCollection).map(el => {
+        // if (el.classList.contains('active-edit-button')) console.log(el)
         if (!activeEditButton) el.removeAttribute('disabled')
         else if (!el.classList.contains('active-edit-button')) el.setAttribute('disabled', true)
     })
@@ -33,7 +40,6 @@ const editCurrentLine = (index, event) => {
     /*******************************************************************************************/
 
     const addPanel = document.querySelector(`#${id} .group-add-panel`)
-    const editPanel = document.querySelector(`#${id} .group-edit-panel`)
 
     addPanel.classList.toggle('hide')
 
@@ -45,11 +51,13 @@ const editCurrentLine = (index, event) => {
     const sellPriceInputCellCollection = document.querySelectorAll(`#${id} .sell-price-cell`)
     const sizeInputCellCollection = document.querySelectorAll(`#${id} .size-cell`)
 
-    const nameInputEditting = document.querySelector(`#${id} .group-edit-section .name-input`)
-    const colorInputEditting = document.querySelector(`#${id} .group-edit-section .color-input`)
-    const costPriceInputEditting = document.querySelector(`#${id} .group-edit-section .cost-price-input`)
-    const sellPriceInputEditting = document.querySelector(`#${id} .group-edit-section .sell-price-input`)
-    const sizeInputEditting = document.querySelector(`#${id} .group-edit-section .size-input`)
+    const nameInputEditting = document.querySelector(`#${id} .group-edit-section .edit-name-input`)
+    const colorInputEditting = document.querySelector(`#${id} .group-edit-section .edit-color-input`)
+    const costPriceInputEditting = document.querySelector(`#${id} .group-edit-section .edit-cost-price-input`)
+    const sellPriceInputEditting = document.querySelector(`#${id} .group-edit-section .edit-sell-price-input`)
+    const sizeInputEditting = document.querySelector(`#${id} .group-edit-section .edit-size-input`)
+
+    const updateButton = document.querySelector(`#${id} .group-edit-section .edit-current-position-button`)
 
     nameInputEditting.value = nameInputCellCollection[index].innerText
     colorInputEditting.value = colorInputCellCollection[index].innerText
@@ -57,30 +65,14 @@ const editCurrentLine = (index, event) => {
     sellPriceInputEditting.value = sellPriceInputCellCollection[index].innerText
     sizeInputEditting.value = sizeInputCellCollection[index].innerText
 
-    // editButton.classList.toggle('hide')
-    //
-    //
-    // if (mainSection.classList.contains('hide')) editSection.classList.remove('hide')
-    // else editSection.classList.add('hide')
+    updateButton.addEventListener('click', () => {
+        nameInputCellCollection[index].innerText = nameInputEditting.value
+        colorInputCellCollection[index].innerText = colorInputEditting.value
+        costPriceInputCellCollection[index].innerText = costPriceInputEditting.value
+        sellPriceInputCellCollection[index].innerText = sellPriceInputEditting.value
+        sizeInputCellCollection[index].innerText = sizeInputEditting.value
+    })
 
-    // mainSection.classList.toggle('hide')
-    // const editSection = document.querySelector(`#${id} .group-edit-section`)
-
-    // const handleClick = () => {
-    //
-    //     // mainSection.classList.toggle('hide')
-    // }
-
-    // editButton.addEventListener('click', () => toggleAddUnitSection(
-    //     editSection,
-    //     editButton,
-    //     `${editButtonActiveText}${index += 1}`,
-    //     editButtonCellText
-    // ))
-
-
-
-    // const mainSection = document.querySelector(`${id} .group-main-button`)
 }
 
 export default editCurrentLine
