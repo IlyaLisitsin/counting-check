@@ -11,13 +11,7 @@ const {
 const editCurrentLine = (index, event) => {
 
     const id = event.target.getAttribute('data-for')
-    const editButton = document.querySelector(`#${id} .group-edit-button`)
-    const mainButton = document.querySelector(`#${id} .group-main-button`)
-    const mainSection = document.querySelector(`#${id} .group-main-section`)
-    const editSection = document.querySelector(`#${id} .group-edit-section`)
-
     const editLineButtonCollection = document.querySelectorAll(`#${id} .edit-line-button`)
-
     const currentEditButton = event.target
     const currentTr = event.target.parentNode.parentNode
     const currentTbody = document.querySelector(`[source-data="${id}"]`)
@@ -26,13 +20,10 @@ const editCurrentLine = (index, event) => {
 
     const activeEditButton = document.querySelector(`#${id} .active-edit-button`)
 
-    console.log(activeEditButton)
-
     currentTbody.classList.toggle('editting-tbody')
     currentTr.classList.toggle('editting-line')
 
     Array.from(editLineButtonCollection).map(el => {
-        // if (el.classList.contains('active-edit-button')) console.log(el)
         if (!activeEditButton) el.removeAttribute('disabled')
         else if (!el.classList.contains('active-edit-button')) el.setAttribute('disabled', true)
     })
@@ -45,7 +36,6 @@ const editCurrentLine = (index, event) => {
     const editPanel = document.querySelector(`#${id} .group-edit-panel`)
 
     addPanel.classList.toggle('hide')
-
 
     /*******************************************************************************************/
 

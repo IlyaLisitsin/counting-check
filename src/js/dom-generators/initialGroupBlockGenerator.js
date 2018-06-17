@@ -33,16 +33,16 @@ const initialGroupBlockGenerator = (groupName) => `
                 <div class="group-edit-panel">
                     <button class="group-edit-button">${editButtonActiveText}</button>
                     <div class="group-edit-section">
-                        <input type="text" placeholder="Name" class="name-input">
-                        <input type="text" placeholder="Color" class="color-input">
+                        <input type="text" placeholder="Name" class="edit-name-input">
+                        <input type="text" placeholder="Color" class="edit-color-input">
                         <select class="size-input">
                             <option value="s">s</option>
                             <option value="m">m</option>
                             <option value="l">l</option>
                             <option value="xl">xl</option>
                         </select>
-                        <input type="text" placeholder="Cost price" class="cost-price-input">
-                        <input type="text" placeholder="Sell price" class="sell-price-input">
+                        <input type="text" placeholder="Cost price" class="edit-cost-price-input">
+                        <input type="text" placeholder="Sell price" class="edit-sell-price-input">
         
                         <button class="edit-current-position-button">Update</button>
                     </div>
