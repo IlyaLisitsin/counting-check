@@ -2,12 +2,13 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        main: [__dirname + '/src/js/main']
+        'main.js': __dirname + '/src/js/main',
+        'main-style.css': __dirname + '/src/styles/main.scss'
     },
     output: {
         path: __dirname +  '/public',
         publicPath: '/',
-        filename: '[name].js'
+        filename: '[name]'
     },
     watch: true,
     module: {
@@ -17,6 +18,20 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                 }
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'main.css'
+                        }
+                    },
+                    { loader: 'extract-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'sass-loader' }
+                ]
             }
         ]
     },
@@ -35,6 +50,7 @@ module.exports = {
             'variables': __dirname + '/src/js/variables',
             'event-listeners': __dirname + '/src/js/event-listeners',
             'dom-generators': __dirname + '/src/js/dom-generators'
-        }
+        },
+        extensions: ['.scss', '.js']
     }
 }
