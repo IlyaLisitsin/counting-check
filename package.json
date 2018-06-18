@@ -19,6 +19,7 @@
   "homepage": "https://github.com/IlyaLisitsin/counting-check#readme",
   "dependencies": {
     "babel-loader": "^7.1.4",
+    "babel-plugin-webpack-alias": "^2.1.2",
     "webpack": "^4.12.0",
     "webpack-dev-server": "^3.1.4"
   },
