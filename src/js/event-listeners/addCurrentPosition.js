@@ -1,5 +1,6 @@
 import resultTableGenerator from 'dom-generators/resultTableGenerator'
 import newGoodInit from 'js/newGoodInit'
+import recountGroupTotal from 'js/recountGroupTotal'
 
 const clearInputs = (addSectionInputs) => Array.from(addSectionInputs).forEach(el => el.value = '')
 
@@ -32,6 +33,7 @@ const addCurrentPosition = (inputValueObject, index, resultTableCollection, addS
 
     clearInputs(addSectionInputs)
     newGoodInit(dataFor)
+    recountGroupTotal(dataFor)
 }
 
 export default addCurrentPosition

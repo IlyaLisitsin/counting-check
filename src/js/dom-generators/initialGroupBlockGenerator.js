@@ -8,6 +8,7 @@ const {
 const initialGroupBlockGenerator = (groupName) => `
     <div class="group" id="${groupName}-group">
         <h2 class="group-heading active">${groupName}</h2>
+        <div class="total-group-counting">Total: <span class="money-amount">0</span></div>
         <button class="group-delete-button">Delete current group</button>
         <div class="group-content">
             <div class="group-settings-panel">
@@ -54,7 +55,8 @@ const initialGroupBlockGenerator = (groupName) => `
                         <td>Name</td>
                         <td>Color</td>
                         <td>Size</td>
-                        <td>Price</td>
+                        <td>Cost price</td>
+                        <td>Sell price</td>
                         <td>Given</td>
                         <td>Sold</td>
                     </tr>

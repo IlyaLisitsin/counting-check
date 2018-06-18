@@ -1,4 +1,4 @@
-import newGroupInit from '../newGroupInit'
+import newGroupInit from 'js/newGroupInit'
 import initialGroupBlockGenerator from 'dom-generators/initialGroupBlockGenerator'
 import variables from 'variables'
 

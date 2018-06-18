@@ -1,24 +1,49 @@
 import variables from 'variables'
-import toggleAddUnitSection from 'event-listeners/toggleAddUnitSection'
+import recountGroupTotal from 'js/recountGroupTotal'
 
 const {
-    activeEditButton,
     exitEditModeText,
     startEditModeText,
 } = variables
 
+const toggleEditView = ({ id, lineUpdater, updateButton }) => {
+    const editLineButtonCollection = document.querySelectorAll(`#${id} .edit-line-button`)
+    const currentEditButton = event.target
+    const currentTr = event.target.parentNode.parentNode
+    const currentTbody = document.querySelector(`[source-data="${id}"]`)
+
+    currentEditButton.classList.toggle('active-edit-button')
+    const activeEditButton = document.querySelector(`#${id} .active-edit-button`)
+
+    currentTbody.classList.toggle('editting-tbody')
+    currentTr.classList.toggle('editting-line')
+
+    Array.from(editLineButtonCollection).map(el => {
+        if (!activeEditButton) {
+            updateButton.removeEventListener('click', lineUpdater)
+            el.removeAttribute('disabled')
+        }
+        else if (!el.classList.contains('active-edit-button')) el.setAttribute('disabled', true)
+    })
+
+    currentEditButton.innerHTML === exitEditModeText ?
+        currentEditButton.innerHTML = startEditModeText :
+        currentEditButton.innerHTML = exitEditModeText
+
+    const addPanel = document.querySelector(`#${id} .group-add-panel`)
+    addPanel.classList.toggle('hide')
+}
 
 const editCurrentLine = (index, event) => {
 
     const id = event.target.getAttribute('data-for')
 
-    /*******************************************************************************************/
-
-    const nameInputCellCollection = document.querySelectorAll(`.name-cell`)
-    const colorInputCellCollection = document.querySelectorAll(`.color-cell`)
-    const costPriceInputCellCollection = document.querySelectorAll(`.cost-price-cell`)
-    const sellPriceInputCellCollection = document.querySelectorAll(`.sell-price-cell`)
-    const sizeInputCellCollection = document.querySelectorAll(`.size-cell`)
+    // Table update logics
+    const nameInputCellCollection = document.querySelectorAll('.name-cell')
+    const colorInputCellCollection = document.querySelectorAll('.color-cell')
+    const costPriceInputCellCollection = document.querySelectorAll('.cost-price-cell')
+    const sellPriceInputCellCollection = document.querySelectorAll('.sell-price-cell')
+    const sizeInputCellCollection = document.querySelectorAll('.size-cell')
 
     const nameInputEditting = document.querySelector(`#${id} .group-edit-section .edit-name-input`)
     const colorInputEditting = document.querySelector(`#${id} .group-edit-section .edit-color-input`)
@@ -34,7 +59,7 @@ const editCurrentLine = (index, event) => {
     sellPriceInputEditting.value = sellPriceInputCellCollection[index].innerText
     sizeInputEditting.value = sizeInputCellCollection[index].innerText
 
-    const updateLine = () => {
+    const lineUpdater = () => {
         nameInputCellCollection[index].innerText = nameInputEditting.value
         colorInputCellCollection[index].innerText = colorInputEditting.value
         costPriceInputCellCollection[index].innerText = costPriceInputEditting.value
@@ -42,37 +67,13 @@ const editCurrentLine = (index, event) => {
         sizeInputCellCollection[index].innerText = sizeInputEditting.value
     }
 
-    updateButton.addEventListener('click', updateLine, { once: true })
+    updateButton.addEventListener('click', lineUpdater, { once: true })
 
-    /****************************************************************************/
+    // Total group money reccount
+    recountGroupTotal(id)
 
-    const editLineButtonCollection = document.querySelectorAll(`#${id} .edit-line-button`)
-
-    const currentEditButton = event.target
-    const currentTr = event.target.parentNode.parentNode
-    const currentTbody = document.querySelector(`[source-data="${id}"]`)
-
-    currentEditButton.classList.toggle('active-edit-button')
-
-    const activeEditButton = document.querySelector(`#${id} .active-edit-button`)
-
-    currentTbody.classList.toggle('editting-tbody')
-    currentTr.classList.toggle('editting-line')
-
-    Array.from(editLineButtonCollection).map(el => {
-        if (!activeEditButton) {
-            updateButton.removeEventListener('click', updateLine)
-            el.removeAttribute('disabled')
-        }
-        else if (!el.classList.contains('active-edit-button')) el.setAttribute('disabled', true)
-    })
-
-    currentEditButton.innerHTML === exitEditModeText ? currentEditButton.innerHTML = startEditModeText : currentEditButton.innerHTML = exitEditModeText
-
-    /*******************************************************************************************/
-
-    const addPanel = document.querySelector(`#${id} .group-add-panel`)
-    addPanel.classList.toggle('hide')
+    // Toggle edit view
+   toggleEditView({ id, lineUpdater, updateButton })
 
 }
 

@@ -76,3 +76,11 @@ h1 {
 button[disabled="true"] {
     cursor: not-allowed;
 }
+
+.loss {
+    color: red;
+}
+
+.profit {
+    color: #00d37a;
+}
