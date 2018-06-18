@@ -14,11 +14,11 @@ const editCurrentLine = (index, event) => {
 
     /*******************************************************************************************/
 
-    const nameInputCellCollection = document.querySelectorAll(`#${id} .name-cell`)
-    const colorInputCellCollection = document.querySelectorAll(`#${id} .color-cell`)
-    const costPriceInputCellCollection = document.querySelectorAll(`#${id} .cost-price-cell`)
-    const sellPriceInputCellCollection = document.querySelectorAll(`#${id} .sell-price-cell`)
-    const sizeInputCellCollection = document.querySelectorAll(`#${id} .size-cell`)
+    const nameInputCellCollection = document.querySelectorAll(`.name-cell`)
+    const colorInputCellCollection = document.querySelectorAll(`.color-cell`)
+    const costPriceInputCellCollection = document.querySelectorAll(`.cost-price-cell`)
+    const sellPriceInputCellCollection = document.querySelectorAll(`.sell-price-cell`)
+    const sizeInputCellCollection = document.querySelectorAll(`.size-cell`)
 
     const nameInputEditting = document.querySelector(`#${id} .group-edit-section .edit-name-input`)
     const colorInputEditting = document.querySelector(`#${id} .group-edit-section .edit-color-input`)
