@@ -30,7 +30,12 @@ module.exports = {
                     },
                     { loader: 'extract-loader' },
                     { loader: 'css-loader' },
-                    { loader: 'sass-loader' }
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            includePaths: ['./node_modules']
+                        }
+                    }
                 ]
             }
         ]
@@ -49,7 +54,8 @@ module.exports = {
             'js': __dirname + '/src/js',
             'variables': __dirname + '/src/js/variables',
             'event-listeners': __dirname + '/src/js/event-listeners',
-            'dom-generators': __dirname + '/src/js/dom-generators'
+            'dom-generators': __dirname + '/src/js/dom-generators',
+            'mdc': __dirname + '/src/styles/mdc'
         },
         extensions: ['.scss', '.js']
     }

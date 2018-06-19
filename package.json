@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/IlyaLisitsin/counting-check#readme",
   "dependencies": {
+    "@material/button": "^0.36.1",
+    "@material/layout-grid": "^0.34.0",
+    "@material/ripple": "^0.36.0",
+    "@material/textfield": "^0.36.1",
+    "@material/typography": "^0.35.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-webpack-alias": "^2.1.2",
     "css-loader": "^0.28.11",
