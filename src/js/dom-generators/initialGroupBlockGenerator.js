@@ -7,7 +7,7 @@ const {
 
 const initialGroupBlockGenerator = (groupName) => `
     <div class="group" id="${groupName}-group">
-        <h2 class="group-heading active">${groupName}</h2>
+        <h2 class="group-heading active mdc-typography--headline2">${groupName}</h2>
         <div class="total-group-counting">Total: <span class="money-amount">0</span></div>
         <button class="group-delete-button">Delete current group</button>
         <div class="group-content">

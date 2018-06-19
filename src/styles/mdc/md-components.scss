@@ -1,0 +1,23 @@
+@import "md-variables";
+
+@import "@material/button/mdc-button";
+@import "@material/layout-grid/mdc-layout-grid";
+@import "@material/typography/mdc-typography";
+@import "@material/textfield/mdc-text-field";
+//@import "@material/notched-outline/mdc-notched-outline";
+
+
+.foo-button {
+  //@include mdc-button-ink-color(teal);
+  //@include mdc-states(teal);
+  //@include mdc-button-container-fill-color(red)
+}
+
+
+//.foo__child {
+//  @include mdc-notched-outline-color(blue);
+//}
+//
+//.foo__parent {
+//  @include mdc-notched-outline-idle-color(green);
+//}
