@@ -2,15 +2,17 @@
   cursor: pointer;
 }
 
-.group-main-section .mdc-select {
-  margin-top: 16px;
-  margin-bottom: 8px;
-}
+.group-main-section {
+  margin-bottom: 24px;
 
-.group-main-section .add-current-position-button {
-  margin-top: 16px;
-  margin-bottom: 8px;
-  height: 56px;
+  .mdc-text-field {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .add-current-position-button {
+     height: 56px;
+   }
 }
 
 .group-content {
@@ -19,17 +21,15 @@
 }
 
 .group-heading ~ .group-content {
-  transform: scaleY(0);
   max-height: 0;
   transform-origin: top;
-  transition: .5s ease-in;
+  transition: .5s ease-in-out;
 }
 
 .group-heading.active ~ .group-content {
-  transform: scaleY(1);
   transform-origin: top;
-  max-height: 10000px;
-  transition: .5s ease-in;
+  max-height: 1000px;
+  transition: .5s ease-in-out;
 }
 
 .group-heading::after {

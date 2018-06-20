@@ -3,6 +3,8 @@ import variables from 'variables'
 const {
     unitButtonInitialText,
     editButtonActiveText,
+    unitButtonInitialIconName,
+    unitButtonActiveIconName,
 } = variables
 
 const initialGroupBlockGenerator = (groupName) => `
@@ -13,7 +15,10 @@ const initialGroupBlockGenerator = (groupName) => `
         <div class="group-content">
             <div class="group-settings-panel">
                 <div class="group-add-panel">
-                    <button class="group-main-button">${unitButtonInitialText}</button>
+                    <button class="group-main-button mdc-button mdc-button--unelevated">
+                        ${unitButtonInitialText}
+                        <i class="material-icons">${unitButtonInitialIconName}</i>
+                    </button>
                     <div class="group-main-section mdc-layout-grid__inner hide">
                         <div class="mdc-text-field mdc-text-field--box mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
                             <input type="text" class="mdc-text-field__input name-input">

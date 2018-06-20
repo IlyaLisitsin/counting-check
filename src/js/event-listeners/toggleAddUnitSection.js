@@ -1,13 +1,25 @@
 const toggleAddUnitSection = (
     groupMainSection,
     groupMainButton,
+    groupMainIcon,
     activeText,
     initialText,
+    activeIcon,
+    initialIcon,
 ) => {
-    groupMainSection.classList.contains('hide') ?
-        groupMainButton.innerHTML = activeText :
-        groupMainButton.innerHTML = initialText
+
+    const currentButtonText = groupMainButton.childNodes[0]
+
+    if (groupMainSection.classList.contains('hide')) {
+        currentButtonText.textContent = activeText
+        groupMainIcon.innerHTML = initialIcon
+    } else {
+        currentButtonText.textContent = initialText
+        groupMainIcon.innerHTML = activeIcon
+    }
+
     groupMainSection.classList.toggle('hide')
+
 }
 
 export default toggleAddUnitSection
