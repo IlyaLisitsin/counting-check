@@ -6,7 +6,7 @@ const {
 } = variables
 
 const initialGroupBlockGenerator = (groupName) => `
-    <div class="group" id="${groupName}-group">
+    <div class="group mdc-layout-grid__cell mdc-layout-grid__cell--align-middle" id="${groupName}-group">
         <h2 class="group-heading active mdc-typography--headline2">${groupName}</h2>
         <div class="total-group-counting">Total: <span class="money-amount">0</span></div>
         <button class="group-delete-button">Delete current group</button>
@@ -57,8 +57,8 @@ const initialGroupBlockGenerator = (groupName) => `
                         <td>Size</td>
                         <td>Cost price</td>
                         <td>Sell price</td>
-                        <td>Given</td>
-                        <td>Sold</td>
+                        <!--<td>Given</td>-->
+                        <!--<td>Sold</td>-->
                     </tr>
                     <tbody source-data="${groupName}-group"></tbody>
                 </thead>

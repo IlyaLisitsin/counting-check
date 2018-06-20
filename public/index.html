@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Counting check</title>
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
@@ -10,9 +11,8 @@
         <h1 class="mdc-typography--headline1">Counting</h1>
         <div class="main-panel">
             <div class="add-group-block">
-                <button id="add-group-button" class="foo-button mdc-button mdc-button--unelevated">Add new group</button>
+                <button id="add-group-button" class="mdc-button mdc-button--unelevated">Add new group</button>
                 <div class="add-group-input-block hide">
-                    <!--<input id="new-group-name-input" placeholder="Type new section name">-->
                     <div class="mdc-text-field mdc-text-field--outlined">
                         <input type="text" id="new-group-name-input" class="mdc-text-field__input">
                         <label for="new-group-name-input" class="mdc-floating-label">Type new section name</label>
@@ -24,35 +24,15 @@
                         <div class="mdc-notched-outline__idle"></div>
                     </div>
 
-                    <button id="new-group-confirm-button">Ok!</button>
+                    <button id="new-group-confirm-button" class="mdc-button mdc-button--unelevated">Ok!</button>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="main-section"></section>
-
-
-
-
-    <!--<div class="mdc-text-field">-->
-        <!--<input type="text" id="my-text-field" class="mdc-text-field__input">-->
-        <!--<label class="mdc-floating-label" for="my-text-field">Hint text</label>-->
-        <!--<div class="mdc-line-ripple"></div>-->
-    <!--</div>-->
-
-    <!--<div class="mdc-text-field mdc-text-field&#45;&#45;outlined">-->
-        <!--<input type="text" id="tf-outlined" class="mdc-text-field__input">-->
-        <!--<label for="tf-outlined" class="mdc-floating-label">Your Name</label>-->
-        <!--<div class="mdc-notched-outline">-->
-            <!--<svg>-->
-                <!--<path class="mdc-notched-outline__path"/>-->
-            <!--</svg>-->
-        <!--</div>-->
-        <!--<div class="mdc-notched-outline__idle"></div>-->
-    <!--</div>-->
-
-    <script src="main.js"></script>
+    <section class="main-section mdc-layout-grid"></section>
+    
+<script src="main.js"></script>
 
 </body>
 </html>
