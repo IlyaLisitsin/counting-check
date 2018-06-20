@@ -4,6 +4,7 @@
 @import "@material/layout-grid/mdc-layout-grid";
 @import "@material/typography/mdc-typography";
 @import "@material/textfield/mdc-text-field";
+@import "@material/select/mdc-select";
 //@import "@material/notched-outline/mdc-notched-outline";
 
 
@@ -11,6 +12,10 @@
   //@include mdc-button-ink-color(teal);
   //@include mdc-states(teal);
   //@include mdc-button-container-fill-color(red)
+}
+
+.mdc-select__native-control {
+  -webkit-appearance: none;
 }
 
 

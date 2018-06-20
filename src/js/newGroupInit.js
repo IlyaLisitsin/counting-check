@@ -2,6 +2,7 @@ import variables from 'variables'
 import deleteCurrentGroup from 'event-listeners/deleteCurrentGroup'
 import addCurrentPosition from 'event-listeners/addCurrentPosition'
 import toggleAddUnitSection from 'event-listeners/toggleAddUnitSection'
+import mdInit from 'js/mdInit'
 
 const {
     addSectionInputs,
@@ -29,6 +30,8 @@ const newGroupInit = () => {
     const costPriceInputCollection = document.querySelectorAll('.cost-price-input')
     const sellPriceInputCollection = document.querySelectorAll('.sell-price-input')
     const sizeInputCollection = document.querySelectorAll('.size-input')
+
+    mdInit()
 
     Array.from(addCurrentPositionButtonCollection).map((el, index) => el.addEventListener('click', () => addCurrentPosition(
         {

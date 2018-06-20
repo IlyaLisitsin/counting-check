@@ -2,6 +2,12 @@ $mdc-typography-styles-headline1: (
   font-size: 72px,
 );
 
+
+$mdc-layout-grid-columns: (
+  desktop: 12,
+  tablet: 8,
+  phone: 4
+);
 //$mdc-typography-styles-headline2: (
 //        font-family: "Arial, Helvetica, sans-serif"
 //);

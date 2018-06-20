@@ -2,6 +2,17 @@
   cursor: pointer;
 }
 
+.group-main-section .mdc-select {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.group-main-section .add-current-position-button {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  height: 56px;
+}
+
 .group-content {
   padding-bottom: 1px;
   overflow: hidden;
@@ -63,3 +74,12 @@
 .profit {
   color: #00d37a;
 }
+
+//.add-current-position-button {
+//  margin-bottom: 8px;
+//}
+//
+//.group-main-section  .mdc-text-field,
+//.group-main-section  .mdc-select {
+//  margin-right: 16px;
+//}
