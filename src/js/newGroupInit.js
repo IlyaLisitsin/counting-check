@@ -18,6 +18,7 @@ const newGroupInit = () => {
 
     const groupMainButtonCollection = document.querySelectorAll('.group-main-button')
     const groupMainButtonIconCollection = document.querySelectorAll('.group-main-button i')
+    const groupEditButtonIconCollection = document.querySelectorAll('.group-edit-button i')
     const addCurrentPositionButtonCollection = document.querySelectorAll('.add-current-position-button')
     const groupMainSectionCollection = document.querySelectorAll(`.group-main-section`)
     const groupEditSectionCollection = document.querySelectorAll(`.group-edit-section`)
@@ -64,8 +65,11 @@ const newGroupInit = () => {
     Array.from(groupEditButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(
         Array.from(groupEditSectionCollection)[index],
         Array.from(groupEditButtonCollection)[index],
+        Array.from(groupEditButtonIconCollection)[index],
         editButtonActiveText,
-        editButtonInitialText
+        editButtonInitialText,
+        unitButtonInitialIconName,
+        unitButtonActiveIconName,
     )))
 
     Array.from(groupDeleteButtonCollection).map((el, index) => el.addEventListener('click', () => deleteCurrentGroup(groupCollection[index])))
