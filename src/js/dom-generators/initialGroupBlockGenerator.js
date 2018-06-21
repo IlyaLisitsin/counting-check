@@ -42,7 +42,7 @@ const initialGroupBlockGenerator = (groupName) => `
                                 <option value="L">L</option>
                                 <option value="XL">XL</option>
                             </select>
-                            <label class="mdc-floating-label">Pick a Food Group</label>
+                            <label class="mdc-floating-label">Size</label>
                             <div class="mdc-line-ripple"></div>
                         </div>
                         <div class="mdc-text-field mdc-text-field--box mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
@@ -55,28 +55,52 @@ const initialGroupBlockGenerator = (groupName) => `
                             <label class="mdc-floating-label">Sell price</label>
                             <div class="mdc-line-ripple"></div>
                         </div>
-                        <button class="add-current-position-button mdc-button mdc-button--unelevated mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">Add</button>
+                        <button class="add-current-position-button mdc-button mdc-button--unelevated mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-12-tablet">Add</button>
 
                     </div>
                 </div>
-
+                
                 <div class="group-edit-panel">
-                    <button class="group-edit-button">${editButtonActiveText}</button>
-                    <div class="group-edit-section">
-                        <input type="text" placeholder="Name" class="edit-name-input">
-                        <input type="text" placeholder="Color" class="edit-color-input">
-                        <select class="edit-size-input">
-                            <option value="s">s</option>
-                            <option value="m">m</option>
-                            <option value="l">l</option>
-                            <option value="xl">xl</option>
-                        </select>
-                        <input type="text" placeholder="Cost price" class="edit-cost-price-input">
-                        <input type="text" placeholder="Sell price" class="edit-sell-price-input">
-        
-                        <button class="edit-current-position-button">Update</button>
+                    <button class="group-edit-button mdc-button mdc-button--unelevated">
+                        ${editButtonActiveText}
+                        <i class="material-icons">${unitButtonInitialIconName}</i>
+                    </button>
+                    <div class="group-edit-section mdc-layout-grid__inner">
+                        <div class="mdc-text-field mdc-text-field--box mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
+                            <input type="text" class="mdc-text-field__input edit-name-input">
+                            <label class="mdc-floating-label">Name</label>
+                            <div class="mdc-line-ripple"></div>
+                        </div>
+                        <div class="mdc-text-field mdc-text-field--box mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
+                            <input type="text" class="mdc-text-field__input edit-color-input">
+                            <label class="mdc-floating-label">Color</label>
+                            <div class="mdc-line-ripple"></div>
+                        </div>                      
+                        <div class="mdc-select mdc-select--box mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
+                            <select class="mdc-select__native-control edit-size-input">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                            </select>
+                            <label class="mdc-floating-label">Size</label>
+                            <div class="mdc-line-ripple"></div>
+                        </div>
+                        <div class="mdc-text-field mdc-text-field--box mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
+                            <input type="text" class="mdc-text-field__input edit-cost-price-input">
+                            <label class="mdc-floating-label">Cost price</label>
+                            <div class="mdc-line-ripple"></div>
+                        </div>    
+                        <div class="mdc-text-field mdc-text-field--box mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
+                            <input type="text" class="mdc-text-field__input edit-sell-price-input">
+                            <label class="mdc-floating-label">Sell price</label>
+                            <div class="mdc-line-ripple"></div>
+                        </div>
+                        <button class="edit-current-position-button mdc-button mdc-button--unelevated mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-12-tablet">Update</button>
+
                     </div>
                 </div>
+
             </div>
             <table class="result-section-table">
                 <thead>

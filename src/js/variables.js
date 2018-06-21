@@ -19,7 +19,7 @@ const editButtonActiveText = 'Hide edit section'
 const editButtonInitialText = 'Edit good'
 
 const exitEditModeText = 'Exit line editor'
-const startEditModeText = 'Edit litne'
+const startEditModeText = 'Edit line'
 
 const initialResultTable = `
     <tr class="table-head">

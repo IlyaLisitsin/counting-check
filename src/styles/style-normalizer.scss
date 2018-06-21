@@ -1,8 +1,9 @@
-@import 'variables.scss';
+//@import 'variables.scss';
 
 body, html {
   margin: 0;
   padding: 0;
+  font-family: Roboto, sans-serif;
 }
 
 body {
@@ -29,4 +30,6 @@ button[disabled="true"] {
 
 .hide {
   display: none;
+  max-height: 0;
+  overflow: hidden;
 }

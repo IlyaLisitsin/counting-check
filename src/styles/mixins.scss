@@ -1,0 +1,12 @@
+@mixin set-panel-color($color) {
+
+  @include mdc-text-field-line-ripple-color($color);
+
+  .mdc-text-field--focused input {
+    color: $color !important;
+  }
+
+  .mdc-text-field--focused .mdc-floating-label {
+    color: $color;
+  }
+}
