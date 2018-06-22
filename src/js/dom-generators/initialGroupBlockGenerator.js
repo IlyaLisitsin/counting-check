@@ -9,9 +9,11 @@ const {
 
 const initialGroupBlockGenerator = (groupName) => `
     <div class="group mdc-layout-grid__cell mdc-layout-grid__cell--align-middle" id="${groupName}-group">
+        <!--<button class="group-delete-button mdc-button">-->
+             <i class="group-delete-button material-icons">clear</i>
+        <!--</button>-->
         <h2 class="group-heading active mdc-typography--headline2">${groupName}</h2>
         <div class="total-group-counting">Total: <span class="money-amount">0</span></div>
-        <button class="group-delete-button">Delete current group</button>
         <div class="group-content">
             <div class="group-settings-panel">
                 <div class="group-add-panel">
@@ -55,13 +57,13 @@ const initialGroupBlockGenerator = (groupName) => `
                             <label class="mdc-floating-label">Sell price</label>
                             <div class="mdc-line-ripple"></div>
                         </div>
-                        <button class="add-current-position-button mdc-button mdc-button--unelevated mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-12-tablet">Add</button>
+                        <button class="add-current-position-button mdc-button mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-12-tablet">Add</button>
 
                     </div>
                 </div>
                 
                 <div class="group-edit-panel">
-                    <button class="group-edit-button mdc-button mdc-button--unelevated">
+                    <button class="group-edit-button mdc-button">
                         ${editButtonActiveText}
                         <i class="material-icons">${unitButtonInitialIconName}</i>
                     </button>

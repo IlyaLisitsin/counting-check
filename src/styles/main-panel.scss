@@ -4,6 +4,15 @@
 
 .group-heading {
   cursor: pointer;
+  display: inline-block;
+  padding-right: 16px;
+}
+
+.total-group-counting {
+  display: inline-block;
+  font-size: 18px;
+  color: $dark-grey-blue;
+  padding-right: 16px;
 }
 
 .group-main-section,
@@ -19,6 +28,12 @@
 .add-current-position-button,
 .edit-current-position-button {
   height: 56px;
+}
+
+.group-main-button,
+.group-edit-button {
+  margin-bottom: 16px;
+
 }
 
 .group-main-section {
@@ -38,6 +53,20 @@
 .edit-current-position-button {
   @include mdc-button-filled-accessible($yellow);
   @include mdc-button-ink-color($white);
+}
+
+.group .group-delete-button {
+  @include mdc-button-ink-color($faint-red);
+  cursor: pointer;
+  font-size: 32px;
+  position: relative;
+  top: 5px;
+  transition: .5s;
+
+  &:hover {
+    @include mdc-button-ink-color($red);
+    transition: .5s;
+  }
 }
 
 .group-content {
