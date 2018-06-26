@@ -4,7 +4,6 @@ const {
     unitButtonInitialText,
     editButtonActiveText,
     unitButtonInitialIconName,
-    unitButtonActiveIconName,
 } = variables
 
 const initialGroupBlockGenerator = (groupName) => `
@@ -102,7 +101,7 @@ const initialGroupBlockGenerator = (groupName) => `
                 </div>
 
             </div>
-            <table class="result-section-table">
+            <table class="result-section-table hide">
                 <thead>
                     <tr class="table-head">
                         <td>Name</td>
