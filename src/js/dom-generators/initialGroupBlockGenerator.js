@@ -9,9 +9,7 @@ const {
 
 const initialGroupBlockGenerator = (groupName) => `
     <div class="group mdc-layout-grid__cell mdc-layout-grid__cell--align-middle" id="${groupName}-group">
-        <!--<button class="group-delete-button mdc-button">-->
-             <i class="group-delete-button material-icons">clear</i>
-        <!--</button>-->
+        <i class="group-delete-button material-icons">clear</i>
         <h2 class="group-heading active mdc-typography--headline2">${groupName}</h2>
         <div class="total-group-counting">Total: <span class="money-amount">0</span></div>
         <div class="group-content">
@@ -63,7 +61,7 @@ const initialGroupBlockGenerator = (groupName) => `
                 </div>
                 
                 <div class="group-edit-panel">
-                    <button class="group-edit-button mdc-button">
+                    <button class="group-edit-button mdc-button mdc-button--unelevated">
                         ${editButtonActiveText}
                         <i class="material-icons">${unitButtonInitialIconName}</i>
                     </button>

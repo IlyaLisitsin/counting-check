@@ -1,5 +1,6 @@
 import variables from 'variables'
 import recountGroupTotal from 'js/recountGroupTotal'
+import mdTextFieldInit from 'js/mdInit'
 
 const {
     exitEditModeText,
@@ -58,6 +59,8 @@ const editCurrentLine = (index, event) => {
     costPriceInputEditting.value = costPriceInputCellCollection[index].innerText
     sellPriceInputEditting.value = sellPriceInputCellCollection[index].innerText
     sizeInputEditting.value = sizeInputCellCollection[index].innerText
+
+    mdTextFieldInit()
 
     const lineUpdater = () => {
         nameInputCellCollection[index].innerText = nameInputEditting.value
