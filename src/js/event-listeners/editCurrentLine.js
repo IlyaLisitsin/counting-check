@@ -9,7 +9,7 @@ const {
 
 const toggleEditView = ({ id, lineUpdater, updateButton }) => {
     const editLineButtonCollection = document.querySelectorAll(`#${id} .edit-line-button`)
-    const currentEditButton = event.target
+    const currentEditButton = document.querySelector(`#${id} .active-edit-button`) || event.target
     const currentTr = event.target.parentNode.parentNode
     const currentTbody = document.querySelector(`[source-data="${id}"]`)
 
@@ -69,6 +69,8 @@ const editCurrentLine = (index, event) => {
         costPriceInputCellCollection[index].innerText = costPriceInputEditting.value
         sellPriceInputCellCollection[index].innerText = sellPriceInputEditting.value
         sizeInputCellCollection[index].innerText = sizeInputEditting.value
+
+        toggleEditView({ id, lineUpdater, updateButton })
     }
 
     updateButton.addEventListener('click', lineUpdater, { once: true })
