@@ -60,6 +60,7 @@ const editCurrentLine = (index, event) => {
     sellPriceInputEditting.value = sellPriceInputCellCollection[index].innerText
     sizeInputEditting.value = sizeInputCellCollection[index].innerText
 
+    // Update text fields to toggle active style if there is text
     mdTextFieldInit()
 
     const lineUpdater = () => {
