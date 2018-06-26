@@ -1,5 +1,6 @@
 import variables from 'variables'
 import recountGroupTotal from 'js/recountGroupTotal'
+import mdTextFieldInit from 'js/mdInit'
 
 const {
     exitEditModeText,
@@ -8,7 +9,7 @@ const {
 
 const toggleEditView = ({ id, lineUpdater, updateButton }) => {
     const editLineButtonCollection = document.querySelectorAll(`#${id} .edit-line-button`)
-    const currentEditButton = event.target
+    const currentEditButton = document.querySelector(`#${id} .active-edit-button`) || event.target
     const currentTr = event.target.parentNode.parentNode
     const currentTbody = document.querySelector(`[source-data="${id}"]`)
 
@@ -59,12 +60,17 @@ const editCurrentLine = (index, event) => {
     sellPriceInputEditting.value = sellPriceInputCellCollection[index].innerText
     sizeInputEditting.value = sizeInputCellCollection[index].innerText
 
+    // Update text fields to toggle active style if there is text
+    mdTextFieldInit()
+
     const lineUpdater = () => {
         nameInputCellCollection[index].innerText = nameInputEditting.value
         colorInputCellCollection[index].innerText = colorInputEditting.value
         costPriceInputCellCollection[index].innerText = costPriceInputEditting.value
         sellPriceInputCellCollection[index].innerText = sellPriceInputEditting.value
         sizeInputCellCollection[index].innerText = sizeInputEditting.value
+
+        toggleEditView({ id, lineUpdater, updateButton })
     }
 
     updateButton.addEventListener('click', lineUpdater, { once: true })

@@ -16,15 +16,17 @@ const addCurrentPosition = (inputValueObject, index, resultTableCollection, addS
     } = inputValueObject
 
     if (!Number.isInteger(Number(amount))) {
-        alert('Please choose correct amount')
+        alert('Please choose numeric amount')
         return
     } else if (!Number.isInteger(Number(costPrice))) {
-        alert('Please choose correct cost price')
+        alert('Please choose numeric cost price')
         return
     } else if (!Number.isInteger(Number(sellPrice))) {
-        alert('Please choose correct sell price')
+        alert('Please choose numeric sell price')
         return
     }
+
+    Array.from(resultTableCollection)[index].parentNode.classList.remove('hide')
 
     while (amount) {
         Array.from(resultTableCollection)[index].innerHTML += resultTableGenerator(name, color, size, costPrice, sellPrice, dataFor)

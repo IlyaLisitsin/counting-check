@@ -1,0 +1,30 @@
+header {
+  background: $grey-blue;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+.main-panel {
+  text-align: center;
+}
+
+.add-group-block .mdc-notched-outline {
+
+  svg {
+    position: static;
+  }
+}
+
+#new-group-confirm-button {
+  display: block;
+  margin: 0 auto;
+}
+
+#new-group-name-input {
+  height: 100%;
+}

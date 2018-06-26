@@ -24,6 +24,7 @@ const newGroupConfirmButtonHandler = () => {
     }
 
     mainSection.innerHTML += initialGroupBlockGenerator(newGroupName)
+    newGroupNameInput.value = ''
 
     newGroupInit()
     toggleAddSection()

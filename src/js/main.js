@@ -1,3 +1,7 @@
 import addGroupListenersInit from 'event-listeners/addGroup'
+import mdInit from 'js/mdInit'
 
-addGroupListenersInit()
+(function () {
+    mdInit()
+    addGroupListenersInit()
+})()

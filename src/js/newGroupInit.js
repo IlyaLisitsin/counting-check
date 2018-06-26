@@ -2,6 +2,7 @@ import variables from 'variables'
 import deleteCurrentGroup from 'event-listeners/deleteCurrentGroup'
 import addCurrentPosition from 'event-listeners/addCurrentPosition'
 import toggleAddUnitSection from 'event-listeners/toggleAddUnitSection'
+import mdInit from 'js/mdInit'
 
 const {
     addSectionInputs,
@@ -9,11 +10,15 @@ const {
     unitButtonInitialText,
     editButtonActiveText,
     editButtonInitialText,
+    unitButtonInitialIconName,
+    unitButtonActiveIconName,
 } = variables
 
 const newGroupInit = () => {
 
     const groupMainButtonCollection = document.querySelectorAll('.group-main-button')
+    const groupMainButtonIconCollection = document.querySelectorAll('.group-main-button i')
+    const groupEditButtonIconCollection = document.querySelectorAll('.group-edit-button i')
     const addCurrentPositionButtonCollection = document.querySelectorAll('.add-current-position-button')
     const groupMainSectionCollection = document.querySelectorAll(`.group-main-section`)
     const groupEditSectionCollection = document.querySelectorAll(`.group-edit-section`)
@@ -29,6 +34,8 @@ const newGroupInit = () => {
     const costPriceInputCollection = document.querySelectorAll('.cost-price-input')
     const sellPriceInputCollection = document.querySelectorAll('.sell-price-input')
     const sizeInputCollection = document.querySelectorAll('.size-input')
+
+    mdInit()
 
     Array.from(addCurrentPositionButtonCollection).map((el, index) => el.addEventListener('click', () => addCurrentPosition(
         {
@@ -48,15 +55,21 @@ const newGroupInit = () => {
     Array.from(groupMainButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(
         Array.from(groupMainSectionCollection)[index],
         Array.from(groupMainButtonCollection)[index],
+        Array.from(groupMainButtonIconCollection)[index],
         unitButtonActiveText,
-        unitButtonInitialText
+        unitButtonInitialText,
+        unitButtonInitialIconName,
+        unitButtonActiveIconName,
     )))
 
     Array.from(groupEditButtonCollection).map((el, index) => el.addEventListener('click', () => toggleAddUnitSection(
         Array.from(groupEditSectionCollection)[index],
         Array.from(groupEditButtonCollection)[index],
+        Array.from(groupEditButtonIconCollection)[index],
         editButtonActiveText,
-        editButtonInitialText
+        editButtonInitialText,
+        unitButtonInitialIconName,
+        unitButtonActiveIconName,
     )))
 
     Array.from(groupDeleteButtonCollection).map((el, index) => el.addEventListener('click', () => deleteCurrentGroup(groupCollection[index])))

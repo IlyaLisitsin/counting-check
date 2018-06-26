@@ -2,26 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Counting check</title>
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Counting</h1>
+        <h1 class="mdc-typography--headline1">Counting</h1>
         <div class="main-panel">
             <div class="add-group-block">
-                <button id="add-group-button">Add new group</button>
+                <button id="add-group-button" class="mdc-button mdc-button--unelevated">Add new group</button>
                 <div class="add-group-input-block hide">
-                    <input id="new-group-name-input" placeholder="Type new section name">
-                    <button id="new-group-confirm-button">Ok!</button>
+                    <div class="mdc-text-field mdc-text-field--outlined">
+                        <input type="text" id="new-group-name-input" class="mdc-text-field__input">
+                        <label for="new-group-name-input" class="mdc-floating-label">Type new section name</label>
+                        <div class="mdc-notched-outline">
+                            <svg>
+                                <path class="mdc-notched-outline__path"/>
+                            </svg>
+                        </div>
+                        <div class="mdc-notched-outline__idle"></div>
+                    </div>
+
+                    <button id="new-group-confirm-button" class="mdc-button mdc-button--unelevated">Ok!</button>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="main-section"></section>
+    <section class="main-section mdc-layout-grid"></section>
 
-    <script src="main.js"></script>
+<script src="main.js"></script>
 
 </body>
 </html>

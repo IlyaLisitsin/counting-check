@@ -1,0 +1,133 @@
+.main-section {
+  max-width: 70%;
+}
+
+.group {
+  margin-bottom: 32px;
+}
+
+.group-heading {
+  cursor: pointer;
+  display: inline-block;
+  padding-right: 16px;
+}
+
+.total-group-counting {
+  display: inline-block;
+  font-size: 18px;
+  color: $dark-grey-blue;
+  padding-right: 16px;
+}
+
+.group-main-section,
+.group-edit-section {
+  margin-bottom: 24px;
+
+  .mdc-text-field {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.add-current-position-button,
+.edit-current-position-button {
+  height: 56px;
+}
+
+.group-main-button,
+.group-edit-button {
+  margin-bottom: 16px;
+}
+
+.group-main-section {
+
+ @include set-panel-color($green)
+}
+
+.group-edit-section {
+  @include set-panel-color($yellow)
+}
+
+.add-current-position-button {
+  @include mdc-button-filled-accessible($green);
+  @include mdc-button-ink-color($white);
+}
+
+.edit-current-position-button {
+  @include mdc-button-filled-accessible($yellow);
+  @include mdc-button-ink-color($white);
+}
+
+.group .group-delete-button {
+  @include mdc-button-ink-color($faint-red);
+  cursor: pointer;
+  font-size: 32px;
+  position: relative;
+  top: 5px;
+  transition: .5s;
+
+  &:hover {
+    @include mdc-button-ink-color($red);
+    transition: .5s;
+  }
+}
+
+.group-content {
+  padding-bottom: 1px;
+  overflow: hidden;
+}
+
+.group-heading ~ .group-content {
+  max-height: 0;
+  transform-origin: top;
+  transition: .5s ease-in-out;
+}
+
+.group-heading.active ~ .group-content {
+  transform-origin: top;
+  max-height: 1000px;
+  transition: .5s ease-in-out;
+}
+
+.group-heading::after {
+  content: '';
+  display: inline-block;
+  position: relative;
+  left: 8px;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
+  transition: .3s;
+}
+
+.group-heading.active::after {
+  transform: rotate(180deg);
+  transition: .3s;
+}
+
+.group-edit-panel {
+  display: none;
+}
+
+.group-add-panel.hide ~ .group-edit-panel  {
+  display: block;
+}
+
+.loss {
+  color: red;
+}
+
+.profit {
+  color: #00d37a;
+}
+
+@media screen
+and (max-width: 1024px) {
+
+  .main-section {
+    max-width: 80%;
+  }
+}
