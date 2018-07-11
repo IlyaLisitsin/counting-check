@@ -1,5 +1,6 @@
 import newGroupInit from 'js/newGroupInit'
 import initialGroupBlockGenerator from 'dom-generators/initialGroupBlockGenerator'
+import addGroupToStorage from 'js/localStorageInstruments/addGroupToStorage'
 import variables from 'variables'
 
 const {
@@ -7,7 +8,8 @@ const {
     addGroupButton,
     mainSection,
     newGroupConfirmButton,
-    newGroupNameInput
+    newGroupNameInput,
+    currentStorage,
 } = variables
 
 const toggleAddSection = () => {
@@ -25,6 +27,8 @@ const newGroupConfirmButtonHandler = () => {
 
     mainSection.innerHTML += initialGroupBlockGenerator(newGroupName)
     newGroupNameInput.value = ''
+
+    addGroupToStorage(newGroupName)
 
     newGroupInit()
     toggleAddSection()
