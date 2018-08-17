@@ -19,26 +19,15 @@ export default class Group {
         this.elements.deleteButton = elementInterface({
             element: this.domModel.querySelector('.group-delete-button'),
             event: 'click',
-            callback: this.kek,
+            callback: this.destroy,
         })
-
-        // console.log(324, this.elements)
     }
-
-    kek() {  console.log('you\'ve just clicked this delete nigga!') }
 
     bindEventListeners() {
-        //
-        // for (let domElKey in this.elements) {
-        //     console.log(this.elements[domElKey].element)
-        //     console.log(this.elements[domElKey].event)
-        //     console.log(this.elements[domElKey].callback)
-        //     this.elements[domElKey].element.addEventListener(domElKey.event, this.kek)
-        // }
-
-        this.elements.deleteButton.element.addEventListener('click', this.kek)
+        for (let domElKey in this.elements) {
+            this.elements[domElKey].element.addEventListener(this.elements[domElKey].event, this.elements[domElKey].callback)
+        }
     }
-
 
     unbindEventListeners() {
         this.elements.map(el => el.removeEventListener('click'))
@@ -52,12 +41,10 @@ export default class Group {
 
         console.log('creatin', this.domModel)
 
-
         return this.domModel
     }
 
     destroy() {
-
         console.log('destroin', this.domModel)
         this.domModel.remove()
         this.domModel = null
