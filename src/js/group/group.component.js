@@ -8,29 +8,27 @@ const elementInterface = ({ element, event, callback }) => {
 export default class Group {
     constructor(name) {
         this.name = name
-
         this.domModel = null
         this.elements = {}
     }
 
     bindElements() {
-        // this.elements.input = this.domModel.querySelector('input')
+        const globalGroupScope = this
+
         // this.elements.mainButton = this.domModel.querySelector('.group-main-button')
         this.elements.deleteButton = elementInterface({
             element: this.domModel.querySelector('.group-delete-button'),
             event: 'click',
-            callback: this.destroy,
+            callback: this.destroy.bind(globalGroupScope),
         })
     }
 
     bindEventListeners() {
-        for (let domElKey in this.elements) {
-            this.elements[domElKey].element.addEventListener(this.elements[domElKey].event, this.elements[domElKey].callback)
-        }
+        Object.keys(this.elements).map(domElKey => this.elements[domElKey].element.addEventListener(this.elements[domElKey].event, this.elements[domElKey].callback))
     }
 
     unbindEventListeners() {
-        this.elements.map(el => el.removeEventListener('click'))
+        Object.keys(this.elements).map(domElKey => this.elements[domElKey].element.removeEventListener(this.elements[domElKey].event, this.elements[domElKey].callback))
     }
 
     create() {
@@ -39,14 +37,12 @@ export default class Group {
         this.bindElements()
         this.bindEventListeners()
 
-        console.log('creatin', this.domModel)
-
         return this.domModel
     }
 
     destroy() {
-        console.log('destroin', this.domModel)
         this.domModel.remove()
         this.domModel = null
+        this.unbindEventListeners()
     }
 }
