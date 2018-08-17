@@ -11,87 +11,95 @@ export default class Group {
         this.name = name
 
         this.domModel = null
-        this.elements = {}
+        this.elementsMap = {}
     }
 
     bindElements() {
         const globalGroupScope = this
 
-        this.elements.deleteButton = elementInterface({
+        this.elementsMap.deleteButton = elementInterface({
             element: this.domModel.querySelector('.group-delete-button'),
             event: 'click',
             callback: this.destroy.bind(globalGroupScope),
         })
 
-        this.elements.groupMainButton = elementInterface({
+        this.elementsMap.groupMainButton = elementInterface({
             element: this.domModel.querySelector('.group-main-button'),
             event: 'click',
             callback: this.toggleGroupMainSection.bind(globalGroupScope),
         })
 
-        this.elements.addCurrentPositionButton = elementInterface({
+        this.elementsMap.addCurrentPositionButton = elementInterface({
             element: this.domModel.querySelector('.add-current-position-button'),
             event: 'click',
             callback: this.addCurrentPosition.bind(globalGroupScope),
         })
 
-        this.elements.groupMainSection = elementInterface({
+        this.elementsMap.groupMainSection = elementInterface({
             element: this.domModel.querySelector('.group-main-section'),
         })
 
-        this.elements.nameInput = elementInterface({
+        this.elementsMap.nameInput = elementInterface({
             element: this.domModel.querySelector('.name-input'),
         })
 
-        this.elements.amountInput = elementInterface({
+        this.elementsMap.amountInput = elementInterface({
             element: this.domModel.querySelector('.amount-input'),
         })
 
-        this.elements.colorInput = elementInterface({
+        this.elementsMap.colorInput = elementInterface({
             element: this.domModel.querySelector('.color-input'),
         })
 
-        this.elements.sizeInput = elementInterface({
+        this.elementsMap.sizeInput = elementInterface({
             element: this.domModel.querySelector('.size-input'),
         })
 
-        this.elements.costPriceInput = elementInterface({
+        this.elementsMap.costPriceInput = elementInterface({
             element: this.domModel.querySelector('.cost-price-input'),
         })
 
-        this.elements.sellPriceInput = elementInterface({
+        this.elementsMap.sellPriceInput = elementInterface({
             element: this.domModel.querySelector('.sell-price-input'),
         })
 
-        this.elements.resultSectionTable = elementInterface({
+        this.elementsMap.resultSectionTable = elementInterface({
             element: this.domModel.querySelector('.result-section-table'),
         })
     }
 
     bindEventListeners() {
-        Object.keys(this.elements).map(domElKey => this.elements[domElKey].element.addEventListener(this.elements[domElKey].event, this.elements[domElKey].callback))
+        Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element.addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
     }
 
     unbindEventListeners() {
-        Object.keys(this.elements).map(domElKey => this.elements[domElKey].element.removeEventListener(this.elements[domElKey].event, this.elements[domElKey].callback))
+        Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element.removeEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
     }
 
     toggleGroupMainSection() {
-        this.elements.groupMainSection.element.classList.toggle('hide')
+        this.elementsMap.groupMainSection.element.classList.toggle('hide')
     }
 
     addCurrentPosition() {
+        let interations = this.elementsMap.amountInput.element.value
+        while (interations) {
+            this.addGood()
+            interations--
+        }
+    }
+
+    addGood() {
         const newGood = new Good({
-            name: 'mame',
-            color: 'red',
-            size: 'xl',
-            costPrice: 2345,
-            sellPrice: 56787,
+            name: this.elementsMap.nameInput.element.value,
+            color: this.elementsMap.colorInput.element.value,
+            size: this.elementsMap.sizeInput.element.value,
+            costPrice: this.elementsMap.costPriceInput.element.value,
+            sellPrice: this.elementsMap.sellPriceInput.element.value,
             dataFor: 'get rid of this key',
         }).create()
 
-        this.elements.resultSectionTable.element.appendChild(newGood)
-        this.elements.resultSectionTable.element.classList.toggle('hide')
+        this.elementsMap.resultSectionTable.element.appendChild(newGood)
+        this.elementsMap.resultSectionTable.element.classList.remove('hide')
     }
 
     create() {
