@@ -12,6 +12,7 @@ export default class Group {
 
         this.domModel = null
         this.elementsMap = {}
+        this.edittingGoodContext = null
     }
 
     bindElements() {
@@ -33,6 +34,12 @@ export default class Group {
             element: this.domModel.querySelector('.add-current-position-button'),
             event: 'click',
             callback: this.addCurrentPosition.bind(globalGroupScope),
+        })
+
+        this.elementsMap.editCurrentPositionButton = elementInterface({
+            element: this.domModel.querySelector('.edit-current-position-button'),
+            event: 'click',
+            callback: this.editCurrentPosition.bind(globalGroupScope),
         })
 
         this.elementsMap.groupMainSection = elementInterface({
@@ -62,6 +69,28 @@ export default class Group {
         this.elementsMap.sellPriceInput = elementInterface({
             element: this.domModel.querySelector('.sell-price-input'),
         })
+
+        /////////
+        this.elementsMap.editNameInput = elementInterface({
+            element: this.domModel.querySelector('.edit-name-input'),
+        })
+
+        this.elementsMap.editColorInput = elementInterface({
+            element: this.domModel.querySelector('.edit-color-input'),
+        })
+
+        this.elementsMap.editSizeInput = elementInterface({
+            element: this.domModel.querySelector('.edit-size-input'),
+        })
+
+        this.elementsMap.editCostPriceInput = elementInterface({
+            element: this.domModel.querySelector('.edit-cost-price-input'),
+        })
+
+        this.elementsMap.editSellPriceInput = elementInterface({
+            element: this.domModel.querySelector('.edit-sell-price-input'),
+        })
+        /////////
 
         this.elementsMap.resultSectionTable = elementInterface({
             element: this.domModel.querySelector('.result-section-table'),
@@ -99,6 +128,27 @@ export default class Group {
     editButtonClick() {
         this.elementsMap.groupAddPanel.element.classList.add('hide')
         this.elementsMap.groupEditPanel.element.classList.remove('hide')
+
+        // this.getCurrentGoodContext()
+    }
+
+    editCurrentPosition() {
+        const groupScope = this
+
+        const edittingGoodContext = this.getCurrentGoodContext()
+        edittingGoodContext.updateValues({
+            newName: groupScope.elementsMap.editNameInput.element.value,
+            newColor: groupScope.elementsMap.editColorInput.element.value,
+            newSize: groupScope.elementsMap.editSizeInput.element.value,
+            newCostPrice: groupScope.elementsMap.editCostPriceInput.element.value,
+            newSellPrice: groupScope.elementsMap.editSellPriceInput.element.value,
+        })
+    }
+
+    getCurrentGoodContext() {
+        // "this" is context from current Good
+        this.edittingGoodContext = this
+        return this
     }
 
     addGood() {
@@ -108,8 +158,8 @@ export default class Group {
             size: this.elementsMap.sizeInput.element.value,
             costPrice: this.elementsMap.costPriceInput.element.value,
             sellPrice: this.elementsMap.sellPriceInput.element.value,
-            dataFor: 'get rid of this key',
             editButtonClick: this.editButtonClick.bind(this),
+            getCurrentGoodContext: this.getCurrentGoodContext,
         }).create()
 
         this.elementsMap.resultSectionTable.element.appendChild(newGood)

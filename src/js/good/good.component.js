@@ -5,18 +5,20 @@ const elementInterface = ({ element, event, callback }) => {
 }
 
 export default class Good {
-    constructor({ name, color, size, costPrice, sellPrice, dataFor, editButtonClick }) {
+    constructor({ name, color, size, costPrice, sellPrice, editButtonClick, getCurrentGoodContext }) {
         this.name = name
         this.color = color
         this.size = size
         this.costPrice = costPrice
         this.sellPrice = sellPrice
-        this.dataFor = dataFor
         this.editButtonClick = editButtonClick
+        this.getCurrentGoodContext = getCurrentGoodContext
 
         this.domModel = null
         this.elementsMap = {}
     }
+
+    pizda() { console.log('pizds') }
 
     bindElements() {
         const globalGroupScope = this
@@ -33,6 +35,16 @@ export default class Good {
         Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element.addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
     }
 
+    updateValues({ newName, newColor, newSize, newCostPrice, newSellPrice  }) {
+        this.domModel.innerHTML = goodTpl({
+            name: newName || this.name,
+            color: newColor || this.color,
+            size: newSize || this.size,
+            costPrice: newCostPrice || this.costPrice,
+            sellPrice: newSellPrice || this.sellPrice,
+        })
+    }
+
     create() {
         this.domModel = document.createElement('tr')
 
@@ -42,7 +54,6 @@ export default class Good {
             size: this.size,
             costPrice: this.costPrice,
             sellPrice: this.sellPrice,
-            dataFor: this.dataFor,
         })
 
         this.bindElements()
@@ -52,6 +63,8 @@ export default class Good {
     }
 
     editLine() {
+        console.log('good', this.domModel)
         this.editButtonClick()
+        this.getCurrentGoodContext()
     }
 }
