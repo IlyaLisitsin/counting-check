@@ -66,6 +66,14 @@ export default class Group {
         this.elementsMap.resultSectionTable = elementInterface({
             element: this.domModel.querySelector('.result-section-table'),
         })
+
+        this.elementsMap.groupAddPanel = elementInterface({
+            element: this.domModel.querySelector('.group-add-panel'),
+        })
+
+        this.elementsMap.groupEditPanel = elementInterface({
+            element: this.domModel.querySelector('.group-edit-panel'),
+        })
     }
 
     bindEventListeners() {
@@ -88,6 +96,11 @@ export default class Group {
         }
     }
 
+    editButtonClick() {
+        this.elementsMap.groupAddPanel.element.classList.add('hide')
+        this.elementsMap.groupEditPanel.element.classList.remove('hide')
+    }
+
     addGood() {
         const newGood = new Good({
             name: this.elementsMap.nameInput.element.value,
@@ -96,6 +109,7 @@ export default class Group {
             costPrice: this.elementsMap.costPriceInput.element.value,
             sellPrice: this.elementsMap.sellPriceInput.element.value,
             dataFor: 'get rid of this key',
+            editButtonClick: this.editButtonClick.bind(this),
         }).create()
 
         this.elementsMap.resultSectionTable.element.appendChild(newGood)

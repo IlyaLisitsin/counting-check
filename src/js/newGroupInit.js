@@ -16,6 +16,15 @@ const {
 
 const newGroupInit = () => {
 
+
+    const nameInputCollection = document.querySelectorAll('.name-input')
+    const amountInputCollection = document.querySelectorAll('.amount-input')
+    const colorInputCollection = document.querySelectorAll('.color-input')
+    const costPriceInputCollection = document.querySelectorAll('.cost-price-input')
+    const sellPriceInputCollection = document.querySelectorAll('.sell-price-input')
+    const sizeInputCollection = document.querySelectorAll('.size-input')
+
+    mdInit()
     const groupMainButtonCollection = document.querySelectorAll('.group-main-button')
     const groupMainButtonIconCollection = document.querySelectorAll('.group-main-button i')
     const groupEditButtonIconCollection = document.querySelectorAll('.group-edit-button i')
@@ -27,15 +36,6 @@ const newGroupInit = () => {
     const groupEditButtonCollection = document.querySelectorAll('.group-edit-button')
     const groupHeadingCollection = document.querySelectorAll('.group-heading')
     const groupCollection = document.querySelectorAll('.group')
-
-    const nameInputCollection = document.querySelectorAll('.name-input')
-    const amountInputCollection = document.querySelectorAll('.amount-input')
-    const colorInputCollection = document.querySelectorAll('.color-input')
-    const costPriceInputCollection = document.querySelectorAll('.cost-price-input')
-    const sellPriceInputCollection = document.querySelectorAll('.sell-price-input')
-    const sizeInputCollection = document.querySelectorAll('.size-input')
-
-    mdInit()
 
     Array.from(addCurrentPositionButtonCollection).map((el, index) => el.addEventListener('click', () => addCurrentPosition(
         {
