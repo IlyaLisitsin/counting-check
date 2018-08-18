@@ -5,6 +5,7 @@ const elementInterface = ({ element, event, callback }) => {
     return { element, event, callback }
 }
 
+let ctx = null
 
 export default class Group {
     constructor(name) {
@@ -12,6 +13,7 @@ export default class Group {
 
         this.domModel = null
         this.elementsMap = {}
+        this.ctx = null
         this.edittingGoodContext = null
     }
 
@@ -42,6 +44,10 @@ export default class Group {
             callback: this.editCurrentPosition.bind(globalGroupScope),
         })
 
+        this.elementsMap.groupTable = elementInterface({
+            element: this.domModel.querySelector('table'),
+        })
+
         this.elementsMap.groupMainSection = elementInterface({
             element: this.domModel.querySelector('.group-main-section'),
         })
@@ -70,7 +76,6 @@ export default class Group {
             element: this.domModel.querySelector('.sell-price-input'),
         })
 
-        /////////
         this.elementsMap.editNameInput = elementInterface({
             element: this.domModel.querySelector('.edit-name-input'),
         })
@@ -90,7 +95,6 @@ export default class Group {
         this.elementsMap.editSellPriceInput = elementInterface({
             element: this.domModel.querySelector('.edit-sell-price-input'),
         })
-        /////////
 
         this.elementsMap.resultSectionTable = elementInterface({
             element: this.domModel.querySelector('.result-section-table'),
@@ -129,26 +133,40 @@ export default class Group {
         this.elementsMap.groupAddPanel.element.classList.add('hide')
         this.elementsMap.groupEditPanel.element.classList.remove('hide')
 
-        // this.getCurrentGoodContext()
+        this.elementsMap.groupTable.element.classList.add('editting-tbody')
     }
 
     editCurrentPosition() {
-        const groupScope = this
-
-        const edittingGoodContext = this.getCurrentGoodContext()
-        edittingGoodContext.updateValues({
-            newName: groupScope.elementsMap.editNameInput.element.value,
-            newColor: groupScope.elementsMap.editColorInput.element.value,
-            newSize: groupScope.elementsMap.editSizeInput.element.value,
-            newCostPrice: groupScope.elementsMap.editCostPriceInput.element.value,
-            newSellPrice: groupScope.elementsMap.editSellPriceInput.element.value,
+        ctx.updateValues({
+            newName: this.elementsMap.editNameInput.element.value,
+            newColor: this.elementsMap.editColorInput.element.value,
+            newSize: this.elementsMap.editSizeInput.element.value,
+            newCostPrice: this.elementsMap.editCostPriceInput.element.value,
+            newSellPrice: this.elementsMap.editSellPriceInput.element.value,
         })
+
+        this.elementsMap.groupAddPanel.element.classList.remove('hide')
+        this.elementsMap.groupEditPanel.element.classList.add('hide')
+
+        this.elementsMap.nameInput.element.value = ''
+        this.elementsMap.colorInput.element.value = ''
+        this.elementsMap.sizeInput.element.value = ''
+        this.elementsMap.amountInput.element.value = ''
+        this.elementsMap.costPriceInput.element.value = ''
+        this.elementsMap.sellPriceInput.element.value = ''
+
+        this.elementsMap.groupTable.element.classList.remove('editting-table')
+        ctx.domModel.classList.remove('editting-line')
+        ctx = null
     }
 
     getCurrentGoodContext() {
         // "this" is context from current Good
-        this.edittingGoodContext = this
-        return this
+        ctx = Object.assign({}, this)
+
+        // how to copy prototype???
+        ctx.updateValues = this.updateValues
+        ctx.domModel = this.domModel
     }
 
     addGood() {

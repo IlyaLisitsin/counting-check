@@ -18,8 +18,6 @@ export default class Good {
         this.elementsMap = {}
     }
 
-    pizda() { console.log('pizds') }
-
     bindElements() {
         const globalGroupScope = this
 
@@ -63,8 +61,11 @@ export default class Good {
     }
 
     editLine() {
-        console.log('good', this.domModel)
+        console.log('good', this)
+        this.domModel.classList.add('editting-line')
         this.editButtonClick()
         this.getCurrentGoodContext()
+
+
     }
 }
