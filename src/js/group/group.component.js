@@ -13,8 +13,6 @@ export default class Group {
 
         this.domModel = null
         this.elementsMap = {}
-        this.ctx = null
-        this.edittingGoodContext = null
     }
 
     bindElements() {
@@ -130,10 +128,11 @@ export default class Group {
     }
 
     editButtonClick() {
+        console.log(242432432)
         this.elementsMap.groupAddPanel.element.classList.add('hide')
         this.elementsMap.groupEditPanel.element.classList.remove('hide')
 
-        this.elementsMap.groupTable.element.classList.add('editting-tbody')
+        this.elementsMap.groupTable.element.classList.add('editting-table')
     }
 
     editCurrentPosition() {
