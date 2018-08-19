@@ -128,7 +128,6 @@ export default class Group {
     }
 
     editButtonClick() {
-        console.log(242432432)
         this.elementsMap.groupAddPanel.element.classList.add('hide')
         this.elementsMap.groupEditPanel.element.classList.remove('hide')
 
@@ -166,6 +165,8 @@ export default class Group {
         // how to copy prototype???
         ctx.updateValues = this.updateValues
         ctx.domModel = this.domModel
+        ctx.bindEventListeners = this.bindEventListeners
+        ctx.elementsMap = this.elementsMap
     }
 
     addGood() {

@@ -19,12 +19,12 @@ export default class Good {
     }
 
     bindElements() {
-        const globalGroupScope = this
+        const globalGoodScope = this
 
         this.elementsMap.editButton = elementInterface({
             element: this.domModel.querySelector('.edit-line-button'),
             event: 'click',
-            callback: this.editLine.bind(globalGroupScope),
+            callback: this.editLine.bind(globalGoodScope),
         })
 
     }
@@ -41,6 +41,14 @@ export default class Good {
             costPrice: newCostPrice || this.costPrice,
             sellPrice: newSellPrice || this.sellPrice,
         })
+
+        this.name = newName || this.name
+        this.color = newColor || this.color
+        this.size = newSize || this.size
+        this.costPrice = newCostPrice || this.costPrice
+        this.sellPrice = newSellPrice || this.sellPrice
+
+        this.bindEventListeners()
     }
 
     create() {
@@ -61,11 +69,8 @@ export default class Good {
     }
 
     editLine() {
-        console.log('good', this)
         this.domModel.classList.add('editting-line')
         this.editButtonClick()
         this.getCurrentGoodContext()
-
-
     }
 }
