@@ -14,27 +14,40 @@ export default class Good {
         this.editButtonClick = editButtonClick
         this.getCurrentGoodContext = getCurrentGoodContext
 
-        this.domModel = null
+        this.goodDomModel = null
         this.elementsMap = {}
+
+        this.bindEventListeners = () => {
+            Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element.addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
+        }
+
+        this.bindElements = () => {
+            const globalGoodScope = this
+
+            this.elementsMap.editButton = elementInterface({
+                element: this.goodDomModel.querySelector('.edit-line-button'),
+                event: 'click',
+                callback: this.editLine.bind(globalGoodScope),
+            })
+        }
     }
 
     bindElements() {
         const globalGoodScope = this
 
         this.elementsMap.editButton = elementInterface({
-            element: this.domModel.querySelector('.edit-line-button'),
+            element: this.goodDomModel.querySelector('.edit-line-button'),
             event: 'click',
             callback: this.editLine.bind(globalGoodScope),
         })
-
     }
 
     bindEventListeners() {
         Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element.addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
     }
 
-    updateValues({ newName, newColor, newSize, newCostPrice, newSellPrice  }) {
-        this.domModel.innerHTML = goodTpl({
+    updateCurrentPositionValues({ newName, newColor, newSize, newCostPrice, newSellPrice }) {
+        this.goodDomModel.innerHTML = goodTpl({
             name: newName || this.name,
             color: newColor || this.color,
             size: newSize || this.size,
@@ -48,13 +61,14 @@ export default class Good {
         this.costPrice = newCostPrice || this.costPrice
         this.sellPrice = newSellPrice || this.sellPrice
 
+        this.bindElements()
         this.bindEventListeners()
     }
 
     create() {
-        this.domModel = document.createElement('tr')
+        this.goodDomModel = document.createElement('tr')
 
-        this.domModel.innerHTML = goodTpl({
+        this.goodDomModel.innerHTML = goodTpl({
             name: this.name,
             color: this.color,
             size: this.size,
@@ -65,12 +79,16 @@ export default class Good {
         this.bindElements()
         this.bindEventListeners()
 
-        return this.domModel
+        return this.goodDomModel
     }
 
     editLine() {
-        this.domModel.classList.add('editting-line')
-        this.editButtonClick()
+        this.goodDomModel.classList.add('editting-line')
         this.getCurrentGoodContext()
+        this.editButtonClick()
+    }
+
+    destroyLine() {
+        this.goodDomModel = null;
     }
 }

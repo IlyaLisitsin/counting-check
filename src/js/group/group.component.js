@@ -5,13 +5,13 @@ const elementInterface = ({ element, event, callback }) => {
     return { element, event, callback }
 }
 
-let ctx = null
+let groupContext = null
 
 export default class Group {
     constructor(name) {
         this.name = name
 
-        this.domModel = null
+        this.groupDomModel = null
         this.elementsMap = {}
     }
 
@@ -19,91 +19,91 @@ export default class Group {
         const globalGroupScope = this
 
         this.elementsMap.deleteButton = elementInterface({
-            element: this.domModel.querySelector('.group-delete-button'),
+            element: this.groupDomModel.querySelector('.group-delete-button'),
             event: 'click',
             callback: this.destroy.bind(globalGroupScope),
         })
 
         this.elementsMap.groupMainButton = elementInterface({
-            element: this.domModel.querySelector('.group-main-button'),
+            element: this.groupDomModel.querySelector('.group-main-button'),
             event: 'click',
             callback: this.toggleGroupMainSection.bind(globalGroupScope),
         })
 
         this.elementsMap.addCurrentPositionButton = elementInterface({
-            element: this.domModel.querySelector('.add-current-position-button'),
+            element: this.groupDomModel.querySelector('.add-current-position-button'),
             event: 'click',
             callback: this.addCurrentPosition.bind(globalGroupScope),
         })
 
         this.elementsMap.editCurrentPositionButton = elementInterface({
-            element: this.domModel.querySelector('.edit-current-position-button'),
+            element: this.groupDomModel.querySelector('.edit-current-position-button'),
             event: 'click',
             callback: this.editCurrentPosition.bind(globalGroupScope),
         })
 
         this.elementsMap.groupTable = elementInterface({
-            element: this.domModel.querySelector('table'),
+            element: this.groupDomModel.querySelector('table'),
         })
 
         this.elementsMap.groupMainSection = elementInterface({
-            element: this.domModel.querySelector('.group-main-section'),
+            element: this.groupDomModel.querySelector('.group-main-section'),
         })
 
         this.elementsMap.nameInput = elementInterface({
-            element: this.domModel.querySelector('.name-input'),
+            element: this.groupDomModel.querySelector('.name-input'),
         })
 
         this.elementsMap.amountInput = elementInterface({
-            element: this.domModel.querySelector('.amount-input'),
+            element: this.groupDomModel.querySelector('.amount-input'),
         })
 
         this.elementsMap.colorInput = elementInterface({
-            element: this.domModel.querySelector('.color-input'),
+            element: this.groupDomModel.querySelector('.color-input'),
         })
 
         this.elementsMap.sizeInput = elementInterface({
-            element: this.domModel.querySelector('.size-input'),
+            element: this.groupDomModel.querySelector('.size-input'),
         })
 
         this.elementsMap.costPriceInput = elementInterface({
-            element: this.domModel.querySelector('.cost-price-input'),
+            element: this.groupDomModel.querySelector('.cost-price-input'),
         })
 
         this.elementsMap.sellPriceInput = elementInterface({
-            element: this.domModel.querySelector('.sell-price-input'),
+            element: this.groupDomModel.querySelector('.sell-price-input'),
         })
 
         this.elementsMap.editNameInput = elementInterface({
-            element: this.domModel.querySelector('.edit-name-input'),
+            element: this.groupDomModel.querySelector('.edit-name-input'),
         })
 
         this.elementsMap.editColorInput = elementInterface({
-            element: this.domModel.querySelector('.edit-color-input'),
+            element: this.groupDomModel.querySelector('.edit-color-input'),
         })
 
         this.elementsMap.editSizeInput = elementInterface({
-            element: this.domModel.querySelector('.edit-size-input'),
+            element: this.groupDomModel.querySelector('.edit-size-input'),
         })
 
         this.elementsMap.editCostPriceInput = elementInterface({
-            element: this.domModel.querySelector('.edit-cost-price-input'),
+            element: this.groupDomModel.querySelector('.edit-cost-price-input'),
         })
 
         this.elementsMap.editSellPriceInput = elementInterface({
-            element: this.domModel.querySelector('.edit-sell-price-input'),
+            element: this.groupDomModel.querySelector('.edit-sell-price-input'),
         })
 
         this.elementsMap.resultSectionTable = elementInterface({
-            element: this.domModel.querySelector('.result-section-table'),
+            element: this.groupDomModel.querySelector('.result-section-table'),
         })
 
         this.elementsMap.groupAddPanel = elementInterface({
-            element: this.domModel.querySelector('.group-add-panel'),
+            element: this.groupDomModel.querySelector('.group-add-panel'),
         })
 
         this.elementsMap.groupEditPanel = elementInterface({
-            element: this.domModel.querySelector('.group-edit-panel'),
+            element: this.groupDomModel.querySelector('.group-edit-panel'),
         })
     }
 
@@ -125,6 +125,13 @@ export default class Group {
             this.addGood()
             interations--
         }
+
+        this.elementsMap.nameInput.element.value = ''
+        this.elementsMap.colorInput.element.value = ''
+        this.elementsMap.sizeInput.element.value = ''
+        this.elementsMap.amountInput.element.value = ''
+        this.elementsMap.costPriceInput.element.value = ''
+        this.elementsMap.sellPriceInput.element.value = ''
     }
 
     editButtonClick() {
@@ -135,7 +142,7 @@ export default class Group {
     }
 
     editCurrentPosition() {
-        ctx.updateValues({
+        groupContext.updateCurrentPositionValues({
             newName: this.elementsMap.editNameInput.element.value,
             newColor: this.elementsMap.editColorInput.element.value,
             newSize: this.elementsMap.editSizeInput.element.value,
@@ -146,27 +153,24 @@ export default class Group {
         this.elementsMap.groupAddPanel.element.classList.remove('hide')
         this.elementsMap.groupEditPanel.element.classList.add('hide')
 
-        this.elementsMap.nameInput.element.value = ''
-        this.elementsMap.colorInput.element.value = ''
-        this.elementsMap.sizeInput.element.value = ''
-        this.elementsMap.amountInput.element.value = ''
-        this.elementsMap.costPriceInput.element.value = ''
-        this.elementsMap.sellPriceInput.element.value = ''
+        this.elementsMap.editNameInput.element.value = ''
+        this.elementsMap.editColorInput.element.value = ''
+        this.elementsMap.editSizeInput.element.value = ''
+        this.elementsMap.editCostPriceInput.element.value = ''
+        this.elementsMap.editSellPriceInput.element.value = ''
+
 
         this.elementsMap.groupTable.element.classList.remove('editting-table')
-        ctx.domModel.classList.remove('editting-line')
-        ctx = null
+        groupContext.goodDomModel.classList.remove('editting-line')
+        groupContext = null
     }
 
     getCurrentGoodContext() {
         // "this" is context from current Good
-        ctx = Object.assign({}, this)
+        groupContext = Object.assign({}, this)
 
-        // how to copy prototype???
-        ctx.updateValues = this.updateValues
-        ctx.domModel = this.domModel
-        ctx.bindEventListeners = this.bindEventListeners
-        ctx.elementsMap = this.elementsMap
+        groupContext.updateCurrentPositionValues = this.updateCurrentPositionValues
+        groupContext.goodDomModel = this.goodDomModel
     }
 
     addGood() {
@@ -185,17 +189,17 @@ export default class Group {
     }
 
     create() {
-        this.domModel = document.createElement('div')
-        this.domModel.innerHTML = goodTpl({ groupName: this.name })
+        this.groupDomModel = document.createElement('div')
+        this.groupDomModel.innerHTML = goodTpl({ groupName: this.name })
         this.bindElements()
         this.bindEventListeners()
 
-        return this.domModel
+        return this.groupDomModel
     }
 
     destroy() {
-        this.domModel.remove()
-        this.domModel = null
+        this.groupDomModel.remove()
+        this.groupDomModel = null
         this.unbindEventListeners()
     }
 }
