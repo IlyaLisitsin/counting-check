@@ -1,10 +1,6 @@
 import Good from 'good'
 import goodTpl from './group.tpl'
 
-const elementInterface = ({ element, event, callback }) => {
-    return { element, event, callback }
-}
-
 let groupContext = null
 
 export default class Group {
@@ -16,95 +12,93 @@ export default class Group {
     }
 
     bindElements() {
-        const globalGroupScope = this
-
-        this.elementsMap.deleteButton = elementInterface({
+        this.elementsMap.deleteButton = {
             element: this.groupDomModel.querySelector('.group-delete-button'),
             event: 'click',
-            callback: this.destroy.bind(globalGroupScope),
-        })
+            callback: this.destroy.bind(this),
+        }
 
-        this.elementsMap.groupMainButton = elementInterface({
+        this.elementsMap.groupMainButton = {
             element: this.groupDomModel.querySelector('.group-main-button'),
             event: 'click',
-            callback: this.toggleGroupMainSection.bind(globalGroupScope),
-        })
+            callback: this.toggleGroupMainSection.bind(this),
+        }
 
-        this.elementsMap.addCurrentPositionButton = elementInterface({
+        this.elementsMap.addCurrentPositionButton = {
             element: this.groupDomModel.querySelector('.add-current-position-button'),
             event: 'click',
-            callback: this.addCurrentPosition.bind(globalGroupScope),
-        })
+            callback: this.addCurrentPosition.bind(this),
+        }
 
-        this.elementsMap.editCurrentPositionButton = elementInterface({
+        this.elementsMap.editCurrentPositionButton = {
             element: this.groupDomModel.querySelector('.edit-current-position-button'),
             event: 'click',
-            callback: this.editCurrentPosition.bind(globalGroupScope),
-        })
+            callback: this.editCurrentPosition.bind(this),
+        }
 
-        this.elementsMap.groupTable = elementInterface({
+        this.elementsMap.groupTable = {
             element: this.groupDomModel.querySelector('table'),
-        })
+        }
 
-        this.elementsMap.groupMainSection = elementInterface({
+        this.elementsMap.groupMainSection = {
             element: this.groupDomModel.querySelector('.group-main-section'),
-        })
+        }
 
-        this.elementsMap.nameInput = elementInterface({
+        this.elementsMap.nameInput = {
             element: this.groupDomModel.querySelector('.name-input'),
-        })
+        }
 
-        this.elementsMap.amountInput = elementInterface({
+        this.elementsMap.amountInput = {
             element: this.groupDomModel.querySelector('.amount-input'),
-        })
+        }
 
-        this.elementsMap.colorInput = elementInterface({
+        this.elementsMap.colorInput = {
             element: this.groupDomModel.querySelector('.color-input'),
-        })
+        }
 
-        this.elementsMap.sizeInput = elementInterface({
+        this.elementsMap.sizeInput = {
             element: this.groupDomModel.querySelector('.size-input'),
-        })
+        }
 
-        this.elementsMap.costPriceInput = elementInterface({
+        this.elementsMap.costPriceInput = {
             element: this.groupDomModel.querySelector('.cost-price-input'),
-        })
+        }
 
-        this.elementsMap.sellPriceInput = elementInterface({
+        this.elementsMap.sellPriceInput = {
             element: this.groupDomModel.querySelector('.sell-price-input'),
-        })
+        }
 
-        this.elementsMap.editNameInput = elementInterface({
+        this.elementsMap.editNameInput = {
             element: this.groupDomModel.querySelector('.edit-name-input'),
-        })
+        }
 
-        this.elementsMap.editColorInput = elementInterface({
+        this.elementsMap.editColorInput = {
             element: this.groupDomModel.querySelector('.edit-color-input'),
-        })
+        }
 
-        this.elementsMap.editSizeInput = elementInterface({
+        this.elementsMap.editSizeInput = {
             element: this.groupDomModel.querySelector('.edit-size-input'),
-        })
+        }
 
-        this.elementsMap.editCostPriceInput = elementInterface({
+        this.elementsMap.editCostPriceInput = {
             element: this.groupDomModel.querySelector('.edit-cost-price-input'),
-        })
+        }
 
-        this.elementsMap.editSellPriceInput = elementInterface({
+        this.elementsMap.editSellPriceInput = {
             element: this.groupDomModel.querySelector('.edit-sell-price-input'),
-        })
+        }
 
-        this.elementsMap.resultSectionTable = elementInterface({
+        this.elementsMap.resultSectionTable = {
             element: this.groupDomModel.querySelector('.result-section-table'),
-        })
+        }
 
-        this.elementsMap.groupAddPanel = elementInterface({
+        this.elementsMap.groupAddPanel = {
             element: this.groupDomModel.querySelector('.group-add-panel'),
-        })
+        }
 
-        this.elementsMap.groupEditPanel = elementInterface({
+        this.elementsMap.groupEditPanel = {
             element: this.groupDomModel.querySelector('.group-edit-panel'),
-        })
+        }
     }
 
     bindEventListeners() {
