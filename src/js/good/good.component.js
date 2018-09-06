@@ -1,45 +1,27 @@
 import goodTpl from './good.tpl'
 
-const elementInterface = ({ element, event, callback }) => {
-    return { element, event, callback }
-}
-
 export default class Good {
-    constructor({ name, color, size, costPrice, sellPrice, editButtonClick, getCurrentGoodContext }) {
+    constructor({ name, color, size, costPrice, sellPrice, id, editButtonClick }) {
         this.name = name
         this.color = color
         this.size = size
         this.costPrice = costPrice
         this.sellPrice = sellPrice
+        this.id = id
         this.editButtonClick = editButtonClick
-        this.getCurrentGoodContext = getCurrentGoodContext
 
         this.goodDomModel = null
         this.elementsMap = {}
-
-        this.bindEventListeners = () => {
-            Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element.addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
-        }
-
-        this.bindElements = () => {
-            const globalGoodScope = this
-
-            this.elementsMap.editButton = elementInterface({
-                element: this.goodDomModel.querySelector('.edit-line-button'),
-                event: 'click',
-                callback: this.editLine.bind(globalGoodScope),
-            })
-        }
     }
 
     bindElements() {
         const globalGoodScope = this
 
-        this.elementsMap.editButton = elementInterface({
+        this.elementsMap.editButton = {
             element: this.goodDomModel.querySelector('.edit-line-button'),
             event: 'click',
             callback: this.editLine.bind(globalGoodScope),
-        })
+        }
     }
 
     bindEventListeners() {
@@ -67,6 +49,7 @@ export default class Good {
 
     create() {
         this.goodDomModel = document.createElement('tr')
+        this.goodDomModel.id = this.id
 
         this.goodDomModel.innerHTML = goodTpl({
             name: this.name,
@@ -79,13 +62,12 @@ export default class Good {
         this.bindElements()
         this.bindEventListeners()
 
-        return this.goodDomModel
+        return this
     }
 
     editLine() {
         this.goodDomModel.classList.add('editting-line')
-        this.getCurrentGoodContext()
-        this.editButtonClick()
+        this.editButtonClick(this.id)
     }
 
     destroyLine() {

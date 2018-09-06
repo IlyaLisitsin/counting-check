@@ -1,7 +1,5 @@
 import Good from 'good'
-import goodTpl from './group.tpl'
-
-let groupContext = null
+import groupTpl from './group.tpl'
 
 export default class Group {
     constructor(name) {
@@ -9,6 +7,8 @@ export default class Group {
 
         this.groupDomModel = null
         this.elementsMap = {}
+        this.goodsMap = {}
+        this.edittingLineId = ''
     }
 
     bindElements() {
@@ -128,7 +128,8 @@ export default class Group {
         this.elementsMap.sellPriceInput.element.value = ''
     }
 
-    editButtonClick() {
+    editButtonClick(edittingLineId) {
+        this.edittingLineId = edittingLineId
         this.elementsMap.groupAddPanel.element.classList.add('hide')
         this.elementsMap.groupEditPanel.element.classList.remove('hide')
 
@@ -136,7 +137,7 @@ export default class Group {
     }
 
     editCurrentPosition() {
-        groupContext.updateCurrentPositionValues({
+        this.goodsMap[this.edittingLineId].updateCurrentPositionValues({
             newName: this.elementsMap.editNameInput.element.value,
             newColor: this.elementsMap.editColorInput.element.value,
             newSize: this.elementsMap.editSizeInput.element.value,
@@ -153,38 +154,35 @@ export default class Group {
         this.elementsMap.editCostPriceInput.element.value = ''
         this.elementsMap.editSellPriceInput.element.value = ''
 
-
         this.elementsMap.groupTable.element.classList.remove('editting-table')
-        groupContext.goodDomModel.classList.remove('editting-line')
-        groupContext = null
     }
 
-    getCurrentGoodContext() {
-        // "this" is context from current Good
-        groupContext = Object.assign({}, this)
-
-        groupContext.updateCurrentPositionValues = this.updateCurrentPositionValues
-        groupContext.goodDomModel = this.goodDomModel
+    idGenerator() {
+        const S4 = () =>(((1+Math.random())*0x10000)|0).toString(16).substring(1)
+        return `_${S4()+S4()}`
     }
 
     addGood() {
+        const newGoodId = this.idGenerator()
         const newGood = new Good({
             name: this.elementsMap.nameInput.element.value,
             color: this.elementsMap.colorInput.element.value,
             size: this.elementsMap.sizeInput.element.value,
             costPrice: this.elementsMap.costPriceInput.element.value,
             sellPrice: this.elementsMap.sellPriceInput.element.value,
+            id: newGoodId,
             editButtonClick: this.editButtonClick.bind(this),
-            getCurrentGoodContext: this.getCurrentGoodContext,
         }).create()
 
-        this.elementsMap.resultSectionTable.element.appendChild(newGood)
+        this.goodsMap[newGoodId] = newGood
+
+        this.elementsMap.resultSectionTable.element.appendChild(newGood.goodDomModel)
         this.elementsMap.resultSectionTable.element.classList.remove('hide')
     }
 
     create() {
         this.groupDomModel = document.createElement('div')
-        this.groupDomModel.innerHTML = goodTpl({ groupName: this.name })
+        this.groupDomModel.innerHTML = groupTpl({ groupName: this.name })
         this.bindElements()
         this.bindEventListeners()
 
