@@ -25,7 +25,13 @@ export default class Good {
     }
 
     bindEventListeners() {
-        Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element.addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
+        Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element
+            .addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
+    }
+
+    unbindEventListeners() {
+        Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element
+            .removeEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
     }
 
     updateCurrentPositionValues({ newName, newColor, newSize, newCostPrice, newSellPrice }) {
@@ -72,5 +78,6 @@ export default class Good {
 
     destroyLine() {
         this.goodDomModel = null;
+        this.unbindEventListeners()
     }
 }

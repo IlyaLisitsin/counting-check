@@ -102,11 +102,13 @@ export default class Group {
     }
 
     bindEventListeners() {
-        Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element.addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
+        Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element
+            .addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
     }
 
     unbindEventListeners() {
-        Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element.removeEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
+        Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element
+            .removeEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
     }
 
     toggleGroupMainSection() {
