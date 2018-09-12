@@ -101,6 +101,18 @@ export default class Group {
         }
     }
 
+    updateGroupLocalstorage(destroy) {
+        const globalGroupCollection = JSON.parse(localStorage.getItem('countingCheck'))
+
+        if (destroy && destroy.isDestroy) {
+            delete globalGroupCollection[this.name]
+        } else {
+            globalGroupCollection[this.name] = this.goodsMap
+        }
+
+        localStorage.setItem('countingCheck', JSON.stringify(globalGroupCollection))
+    }
+
     bindEventListeners() {
         Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element
             .addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
@@ -128,6 +140,9 @@ export default class Group {
         this.elementsMap.amountInput.element.value = ''
         this.elementsMap.costPriceInput.element.value = ''
         this.elementsMap.sellPriceInput.element.value = ''
+
+        this.updateGroupLocalstorage()
+
     }
 
     editButtonClick(edittingLineId) {
@@ -156,7 +171,10 @@ export default class Group {
         this.elementsMap.editCostPriceInput.element.value = ''
         this.elementsMap.editSellPriceInput.element.value = ''
 
+        document.querySelector(`#${this.edittingLineId}`).classList.remove('editting-line')
         this.elementsMap.groupTable.element.classList.remove('editting-table')
+
+        this.updateGroupLocalstorage()
     }
 
     idGenerator() {
@@ -164,8 +182,8 @@ export default class Group {
         return `_${S4()+S4()}`
     }
 
-    addGood() {
-        const newGoodId = this.idGenerator()
+    addGood(passedGoodId) {
+        const newGoodId = passedGoodId || this.idGenerator()
         const newGood = new Good({
             name: this.elementsMap.nameInput.element.value,
             color: this.elementsMap.colorInput.element.value,
@@ -188,6 +206,7 @@ export default class Group {
         this.bindElements()
         this.bindEventListeners()
 
+        this.updateGroupLocalstorage()
         return this.groupDomModel
     }
 
@@ -195,5 +214,6 @@ export default class Group {
         this.groupDomModel.remove()
         this.groupDomModel = null
         this.unbindEventListeners()
+        this.updateGroupLocalstorage({ isDestroy: true })
     }
 }
