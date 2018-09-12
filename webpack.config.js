@@ -55,6 +55,8 @@ module.exports = {
             'variables': __dirname + '/src/js/variables',
             'event-listeners': __dirname + '/src/js/event-listeners',
             'dom-generators': __dirname + '/src/js/dom-generators',
+            'group': __dirname + '/src/js/group',
+            'good': __dirname + '/src/js/good',
             'mdc': __dirname + '/src/styles/mdc'
         },
         extensions: ['.scss', '.js']
