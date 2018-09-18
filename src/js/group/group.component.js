@@ -9,6 +9,62 @@ export default class Group {
         this.elementsMap = {}
         this.goodsMap = {}
         this.edittingLineId = ''
+
+        this.editButtonClick = function(edittingLineId) {
+            this.edittingLineId = edittingLineId
+            this.elementsMap.groupAddPanel.element.classList.add('hide')
+            this.elementsMap.groupEditPanel.element.classList.remove('hide')
+
+            this.elementsMap.groupTable.element.classList.add('editting-table')
+        }
+
+        this.addGood = function(passedName, passedColor, passedSize, passedCostPrice, passedCellPrice, passedGoodId) {
+            const newGoodId = passedGoodId || this.idGenerator()
+            const newGood = new Good({
+                name: passedName || this.elementsMap.nameInput.element.value,
+                color: passedColor || this.elementsMap.colorInput.element.value,
+                size: passedSize || this.elementsMap.sizeInput.element.value,
+                costPrice: passedCostPrice || this.elementsMap.costPriceInput.element.value,
+                sellPrice: passedCellPrice || this.elementsMap.sellPriceInput.element.value,
+                id: newGoodId,
+                editButtonClick: this.editButtonClick.bind(this),
+            }).create()
+
+            this.goodsMap[newGoodId] = newGood
+
+            this.elementsMap.resultSectionTable.element.appendChild(newGood.goodDomModel)
+            this.elementsMap.resultSectionTable.element.classList.remove('hide')
+        }
+
+        this.updateGroupLocalstorage = function(destroy) {
+            const globalGroupCollection = JSON.parse(localStorage.getItem('countingCheck'))
+
+            if (destroy && destroy.isDestroy) {
+                delete globalGroupCollection[this.name]
+            } else {
+                globalGroupCollection[this.name] = this.goodsMap
+            }
+
+            localStorage.setItem('countingCheck', JSON.stringify(globalGroupCollection))
+        }
+
+        this.addCurrentPosition = function() {
+            let interations = this.elementsMap.amountInput.element.value
+            while (interations) {
+                this.addGood()
+                interations--
+            }
+
+            this.elementsMap.nameInput.element.value = ''
+            this.elementsMap.colorInput.element.value = ''
+            this.elementsMap.sizeInput.element.value = ''
+            this.elementsMap.amountInput.element.value = ''
+            this.elementsMap.costPriceInput.element.value = ''
+            this.elementsMap.sellPriceInput.element.value = ''
+
+            this.updateGroupLocalstorage()
+
+        }
     }
 
     bindElements() {
@@ -101,18 +157,6 @@ export default class Group {
         }
     }
 
-    updateGroupLocalstorage(destroy) {
-        const globalGroupCollection = JSON.parse(localStorage.getItem('countingCheck'))
-
-        if (destroy && destroy.isDestroy) {
-            delete globalGroupCollection[this.name]
-        } else {
-            globalGroupCollection[this.name] = this.goodsMap
-        }
-
-        localStorage.setItem('countingCheck', JSON.stringify(globalGroupCollection))
-    }
-
     bindEventListeners() {
         Object.keys(this.elementsMap).map(domElKey => this.elementsMap[domElKey].element
             .addEventListener(this.elementsMap[domElKey].event, this.elementsMap[domElKey].callback))
@@ -125,32 +169,6 @@ export default class Group {
 
     toggleGroupMainSection() {
         this.elementsMap.groupMainSection.element.classList.toggle('hide')
-    }
-
-    addCurrentPosition() {
-        let interations = this.elementsMap.amountInput.element.value
-        while (interations) {
-            this.addGood()
-            interations--
-        }
-
-        this.elementsMap.nameInput.element.value = ''
-        this.elementsMap.colorInput.element.value = ''
-        this.elementsMap.sizeInput.element.value = ''
-        this.elementsMap.amountInput.element.value = ''
-        this.elementsMap.costPriceInput.element.value = ''
-        this.elementsMap.sellPriceInput.element.value = ''
-
-        this.updateGroupLocalstorage()
-
-    }
-
-    editButtonClick(edittingLineId) {
-        this.edittingLineId = edittingLineId
-        this.elementsMap.groupAddPanel.element.classList.add('hide')
-        this.elementsMap.groupEditPanel.element.classList.remove('hide')
-
-        this.elementsMap.groupTable.element.classList.add('editting-table')
     }
 
     editCurrentPosition() {
@@ -180,24 +198,6 @@ export default class Group {
     idGenerator() {
         const S4 = () =>(((1+Math.random())*0x10000)|0).toString(16).substring(1)
         return `_${S4()+S4()}`
-    }
-
-    addGood(passedGoodId) {
-        const newGoodId = passedGoodId || this.idGenerator()
-        const newGood = new Good({
-            name: this.elementsMap.nameInput.element.value,
-            color: this.elementsMap.colorInput.element.value,
-            size: this.elementsMap.sizeInput.element.value,
-            costPrice: this.elementsMap.costPriceInput.element.value,
-            sellPrice: this.elementsMap.sellPriceInput.element.value,
-            id: newGoodId,
-            editButtonClick: this.editButtonClick.bind(this),
-        }).create()
-
-        this.goodsMap[newGoodId] = newGood
-
-        this.elementsMap.resultSectionTable.element.appendChild(newGood.goodDomModel)
-        this.elementsMap.resultSectionTable.element.classList.remove('hide')
     }
 
     create() {
