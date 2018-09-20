@@ -57,6 +57,7 @@ module.exports = {
             'dom-generators': __dirname + '/src/js/dom-generators',
             'group': __dirname + '/src/js/group',
             'good': __dirname + '/src/js/good',
+            'header': __dirname + '/src/js/header',
             'mdc': __dirname + '/src/styles/mdc'
         },
         extensions: ['.scss', '.js']
