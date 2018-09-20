@@ -200,13 +200,16 @@ export default class Group {
         return `_${S4()+S4()}`
     }
 
-    create() {
+    create(passedGoodsMap) {
         this.groupDomModel = document.createElement('div')
         this.groupDomModel.innerHTML = groupTpl({ groupName: this.name })
         this.bindElements()
         this.bindEventListeners()
 
-        this.updateGroupLocalstorage()
+        if (passedGoodsMap && Object.keys(passedGoodsMap).length) {
+            this.goodsMap = passedGoodsMap
+        }
+
         return this.groupDomModel
     }
 

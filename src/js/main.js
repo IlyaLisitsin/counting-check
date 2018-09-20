@@ -11,11 +11,7 @@ import Header from 'header'
     } else {
         Object.keys(globalGroupCollection).map(groupName => {
             const newGroupInstance = new Group(groupName)
-            newGroupInstance.create()
-            // console.log(newGroupInstance)
-            // console.log(globalGroupCollection)
-
-            newGroupInstance.goodsMap = globalGroupCollection[groupName]
+            newGroupInstance.create(globalGroupCollection[groupName])
 
             const currentGoodCollection = Object.keys(globalGroupCollection[groupName])
             currentGoodCollection.map(positionId => {
@@ -39,8 +35,8 @@ import Header from 'header'
             })
 
             document.body.appendChild(newGroupInstance.groupDomModel)
-
         })
     }
+
     mdInit()
 })()
