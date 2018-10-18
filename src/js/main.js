@@ -39,4 +39,8 @@ import Header from 'header'
     }
 
     mdInit()
+
+    fetch('/api/getUsername')
+        .then(res => res.json())
+        .then(user => console.log('USERNAME', user.username));
 })()
